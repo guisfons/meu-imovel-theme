@@ -1,0 +1,629 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+$white: #fff;
+$gray: #666666;
+$yellow: #FBC938;
+$orange: #F1912B;
+$darkorange: #C16800;
+$pastelyellow: #FFE8A7;
+$pastelyellow2: #FFBD6F;
+
+@mixin min($screen) {
+    @media only screen and (min-width: $screen+"px") {
+        @content;
+    }
+}
+
+@mixin max($screen) {
+    @media only screen and (max-width: $screen+"px") {
+        @content;
+    }
+}
+
+@mixin maxh($screen) {
+    @media only screen and (max-height: $screen+"px") {
+        @content;
+    }
+}
+
+@mixin inputStyle {
+    width: 100%;
+    background-color: $white;
+    border: .1rem solid rgba($color: $darkorange, $alpha: .5) !important;
+    border-radius: .8rem;
+
+    font-size: 1.6rem;
+
+    padding: 2.4rem;
+
+    &::placeholder {
+        font-size: 1.6rem;
+        color: rgba($color: $darkorange, $alpha: .4);
+    }
+}
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+html {
+    font-size: 62.5%;
+    scroll-behavior: smooth;
+    height: 100%;
+
+    @include max (1280) {
+        font-size: 50%;
+    }
+}
+body {
+    box-sizing: border-box;
+    position: relative;
+    font-family: "Inter", sans-serif;
+    font-optical-sizing: auto;
+    background-color: $yellow;
+    height: 100%;
+}
+main {
+    position: relative;
+    margin-top: 0px;
+    transition: .3s ease-in-out;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+img {
+    max-width: 100%;
+}
+a {
+    color: inherit;
+    text-decoration: none;
+}
+input:not([type="radio"]):not([type="checkbox"]), button, textarea, select, fieldset {
+    appearance: none;
+    border: none;
+    outline: none;
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+.mobile-only {
+    @include min(801) {
+        display: none !important;
+    }
+}
+
+.desktop-only {
+    @include max(800) {
+        display: none !important;
+    }
+}
+
+input {
+    // max-width: 30rem;
+    @include inputStyle;
+
+    &[type="submit"] {
+        background-color: $orange;
+        font-size: 1.6rem;
+        color: $white;
+        cursor: pointer;
+        margin-top: 2.4rem;
+        border: none !important;
+    }
+}
+
+textarea {
+    @include inputStyle;
+    resize: none;
+    height: 19rem;
+}
+
+.formulario {
+    display: flex;
+
+    max-width: 118.3rem;
+    width: 90%;
+    max-height: 77rem;
+    height: 100%;
+
+    background-color: $pastelyellow;
+    border-radius: 3rem;
+    overflow: hidden;
+
+    opacity: 0;
+    transition: all 1s ease-in;
+
+    @include max (768) {
+        max-height: 90dvh;
+    }
+
+    aside {
+        background-color: $orange;
+        max-width: 42.5rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include max (900) {
+            max-width: 20rem;
+        }
+
+        @include max (600) {
+            display: none;
+        }
+
+        figure {
+            &:first-of-type {
+                display: flex;
+                margin: 4rem 4.6rem;
+            }
+
+            &:last-of-type {
+                display: flex;
+                max-width: 100%;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                    mix-blend-mode: color-burn;
+                }
+            }
+        }
+    }
+
+    &__container {
+        position: relative;
+        width: 100%;
+    }
+
+    &__content {
+        opacity: 0;
+        visibility: hidden;
+
+        width: 100%;
+        height: 100%;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+
+        padding: 5.9rem 5rem;
+
+        @include max (600) {
+            padding: 2rem;
+        }
+
+        transition: all .3s ease-in-out;
+
+        text-align: center;
+        color: $darkorange;
+
+        display: flex;
+        flex-direction: column;
+
+        &:first-of-type {
+            align-items: center;
+            justify-content: center;
+        }
+
+        &--active {
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+
+            transition: all .7s ease-in-out;
+        }
+
+        article {
+            display: flex;
+            flex-direction: column;
+            gap: .7rem;
+
+            max-width: 40.4rem;
+            margin-bottom: 3.2rem;
+
+            & > span {
+                font-size: 3.2rem;
+                font-weight: 700;
+            }
+        }
+
+        p {
+            font-size: 2.4rem;
+        }
+
+        &--form {
+            gap: 3.9rem;
+
+            & > span {
+                color: $orange;
+                font-size: 2rem;
+                font-weight: 700;
+                text-align: left;
+
+                @include max (600) {
+                    text-align: center;
+                }
+            }
+
+            form {
+                overflow-y: auto;
+                padding-right: 2.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 2.2rem;
+
+                &::-webkit-scrollbar {
+                    width: 8px;
+
+                    &-track {
+                        background-color: $pastelyellow2;
+                        border-radius: 7.2rem;
+                    }
+
+                    &-thumb {
+                        background-color: $orange;
+                        border-radius: 7.2rem;
+                    }
+                }
+
+                & > span {
+                    font-size: 1.6rem;
+                    font-weight: 600;
+                    color: $darkorange;
+                    text-align: left;
+                }
+
+                hr {
+                    border: none;
+                    border-bottom: .1rem solid $darkorange;
+                }
+            }
+
+            .formulario__fieldset {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 2.2rem;
+
+                @include max (600) {
+                    flex-direction: column;
+                }
+
+                & > span {
+                    font-size: 1.6rem;
+                    font-weight: 400;
+    
+                    text-align: left;
+                    color: $darkorange;
+    
+                    width: 100%;
+
+                    strong {
+                        color: red;
+                    }
+                }
+
+                &:has(.formulario__accept) {
+                    span {
+                        &:last-of-type {
+                            font-size: 1.2rem;
+                            color: $gray;
+                        }
+                    }
+                }
+
+                &:has(figure) {
+                    @include max (900) {
+                        flex-direction: column;
+                        max-width: 100%;
+                    }
+                }
+            }
+
+            label {
+                display: flex;
+                flex-direction: column;
+                gap: 1.2rem;
+                flex: 1;
+
+                &:only-child {
+                    max-width: 100%;
+                }
+
+                &:has(figure) {
+                    flex-direction: row;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    align-self: flex-end;
+                    gap: .5rem .9rem;
+
+                    cursor: pointer;
+                    height: fit-content;
+
+                    @include max (900) {
+                        max-width: 100%;
+                    }
+
+                    figure {
+                        order: 1;
+                    }
+
+                    & > span {
+                        display: flex;
+                        flex-wrap: wrap;
+
+                        order: 2;
+                        max-width: calc(100% - 6.8rem - .9rem);
+                    }
+
+                    i {
+                        order: 3;
+                        font-size: 1.2rem;
+                        font-weight: 300;
+                        font-style: normal;
+                        color: $gray;
+                        width: 100%;
+
+                        strong {
+                            color: $gray !important;
+                        }
+                    }
+
+                    &:has(input.valid) {
+                        & > span {
+                            font-size: 0;
+
+                            &::before {
+                                content: 'Documento Anexado';
+                                font-size: 1.6rem;
+                            }
+
+                            strong {
+                                display: none;
+                            }
+
+                            i {
+                                font-size: 0;
+    
+                                &::before {
+                                    content: 'Clique para alterar.';
+                                    font-size: 1.2rem;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                & > span:not(.formulario__accept) {
+                    font-size: 1.6rem;
+                    font-weight: 400;
+    
+                    text-align: left;
+                    color: $darkorange;
+    
+                    width: 100%;
+
+                    strong {
+                        color: red;
+                    }
+                }
+
+                figure {
+                    background-color: $white;
+                    border: .1rem solid rgba($color: $darkorange, $alpha: .5);
+                    border-radius: 50%;
+
+                    width: 6.8rem;
+                    height: 6.8rem;
+                    aspect-ratio: 1;
+
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 2.8rem;
+                        height: 2.8rem;
+                        object-fit: contain;
+                    }
+                }
+
+                &:has(.formulario__accept) {
+                    flex-direction: row;
+                    gap: .7rem;
+
+                    svg {
+                        opacity: 0;
+                        visibility: hidden;
+                        transition: .3s ease-in-out;
+                    }
+
+                    &:has(input:checked) svg {
+                        opacity: 1;
+                        visibility: visible;
+                    }
+                }
+            }
+        }
+    }
+
+    &__btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: fit-content;
+        padding: 1.2rem 3.2rem;
+        background-color: $orange;
+        border-radius: 5rem;
+
+        font-size: 1.8rem;
+        color: $white;
+
+        cursor: pointer;
+    }
+
+    &__radio, &__checkbox {
+        display: flex;
+        gap: 1rem;
+
+        cursor: pointer;
+        @include inputStyle;
+
+        &::before {
+            content: '';
+            width: 2.4rem;
+            height: 2.4rem;
+            border-radius: 50%;
+            background-color: rgba($color: $darkorange, $alpha: .35);
+            transition: .3s ease-in-out;
+        }
+        
+        &:has(input:checked)::before {
+            background-color: $darkorange;
+        }
+
+        span {
+            font-size: 1.6rem;
+            color: $darkorange;
+        }
+    }
+
+    &__nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 2.4rem;
+    }
+
+    &__moradores {
+        display: flex;
+        flex-direction: column;
+        gap: 2.2rem;
+    }
+
+    &__mais-moradores {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 100%;
+        padding: 2.4rem;
+
+        border: .1rem solid $darkorange;
+        border-radius: .8rem;
+        background-color: transparent;
+
+        font-size: 1.6rem;
+        color: $darkorange;
+        transition: .3s ease-in-out;
+
+        cursor: pointer;
+
+        &:disabled {
+            border-color: rgba($color: $darkorange, $alpha: .4);
+            color: rgba($color: $darkorange, $alpha: .4);
+        }
+    }
+
+    &__accept {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 1.6rem;
+        height: 1.6rem;
+        border: .1rem solid rgba($color: $darkorange, $alpha: .5);
+        border-radius: .2rem;
+        background-color: $white;
+        cursor: pointer;
+    }
+
+    &__modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999999;
+        width: 100dvw;
+        height: 100dvh;
+    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(0.3rem);
+    
+        opacity: 0;
+        visibility: hidden;
+        transition: .3s ease-in-out;
+    
+        &--active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        span {
+            font-weight: 700;
+            font-size: 3.2rem;
+            
+            text-align: center;
+            color: #FFFFFF;
+        
+            margin: 2.3rem auto .8rem;
+        }
+        
+        p {
+            font-size: 2.4rem;
+            font-weight: 400;
+            color: #fff;
+            text-align: center;
+        }
+    
+        &-success, &-error {
+            position: relative;
+    
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+    
+            background-color: #F1912B;
+            padding: 5rem;
+            
+            max-width: 76.8rem;
+            width: 90%;
+            min-height: 41.6rem;
+            border-radius: 3.2rem;
+        }
+    
+        &--error &-error {
+            display: flex;
+        }
+    
+        &--success &-success {
+            display: flex;
+        }
+    
+        button {
+            position: absolute;
+            top: -3.2rem;
+            right: -3.2rem;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background-color: transparent;
+            cursor: pointer;
+        }
+    }
+}
