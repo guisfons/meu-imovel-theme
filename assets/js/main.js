@@ -23,8 +23,8 @@ function form() {
                 return
             }
 
-            if($(this).hasClass('formulario__btn--fiacao')) {
-                $(this).closest('.formulario__container').find('[data-categ="fiacao"]').addClass('formulario__content--active')
+            if($(this).hasClass('formulario__btn--fiador')) {
+                $(this).closest('.formulario__container').find('[data-categ="fiador"]').addClass('formulario__content--active')
                 return
             }
             
@@ -152,8 +152,8 @@ function envioForm() {
             formData.append('action', 'submit_form_pessoa_fisica');
         }
 
-        if(formTitle == 'Formulário Para Locação - Fiação') {
-            formData.append('action', 'submit_form_fiacao');
+        if(formTitle == 'Formulário Para Locação - Fiador') {
+            formData.append('action', 'submit_form_fiador');
         }
 
         if(formTitle == 'Formulário Para Compra - Análise de Crédito') {
