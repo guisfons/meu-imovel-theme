@@ -5,8 +5,8 @@ get_header();
 <main>
     <section class="formulario">
         <aside>
-            <figure><img src="./assets/img/logo.svg" alt=""></figure>
-            <figure><img src="./assets/img/imovel.webp" alt=""></figure>
+            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo.svg" alt=""></figure>
+            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/imovel.webp" alt=""></figure>
         </aside>
         <div class="formulario__container">
             <div class="formulario__content formulario__content--active formulario__content--1" data-index="1">
@@ -87,7 +87,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="cnpj">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Cartão CNPJ <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
@@ -98,7 +98,7 @@ get_header();
                         </label>
 
                         <label for="contrato-social">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Contrato Social <strong>*</strong>
                                 <i><strong>Anexar o Contrato e sua Última alteração.</strong> O Documento precisa
@@ -111,7 +111,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="comprovante-endereco">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Comprovante de Endereço <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
@@ -124,7 +124,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="imposto-renda">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Imposto de Renda (Último Exercício) <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
@@ -137,7 +137,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="faturamento">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Faturamento dos Últimos 6 meses com Firma <strong>*</strong>
                                 <i><strong>Com renda de no mínimo 4 Vezes o valor do aluguel mais encargos.</strong>
@@ -168,7 +168,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="doc-socio1">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Documento Caso Necessário
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
@@ -196,7 +196,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="doc-socio2">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Documento Caso Necessário
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
@@ -218,7 +218,7 @@ get_header();
                         </label>
 
                         <label for="doc-estado-civil-juridico">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Documento <strong>*</strong>
                                 <i><strong>Certidão de Casamento ou Certidão de Nascimento.</strong> O Documento
@@ -459,7 +459,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="doc-rg">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar RG ou CNH <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
@@ -469,7 +469,7 @@ get_header();
                                 required />
                         </label>
                         <label for="doc-comprovante-residencia-fisico">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Comprovante de Residência <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
@@ -489,7 +489,7 @@ get_header();
                         </label>
 
                         <label for="doc-estado-civil-fisico">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Documento <strong>*</strong>
                                 <i><strong>Certidão de Casamento ou Certidão de Nascimento.</strong> O Documento
@@ -558,7 +558,7 @@ get_header();
                         </div>
                         <div class="formulario__fieldset">
                             <label for="doc-morador-1">
-                                <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                                <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                                 <span>
                                     Anexar Documento Caso Necessário
                                     <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
@@ -586,7 +586,7 @@ get_header();
 
                         <div class="formulario__fieldset">
                             <label for="doc-morador-2">
-                                <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                                <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                                 <span>
                                     Anexar Documento Caso Necessário
                                     <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
@@ -605,7 +605,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="comprovante-renda">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Comprovante de Renda 3 últimos extratos <br> bancários ou holerite <strong>
                                     *</strong>
@@ -740,7 +740,7 @@ get_header();
                                 placeholder="N° da matricula" required>
                         </label>
                         <label for="doc-matricula-imovel">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Documento <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
@@ -828,7 +828,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="doc-rg">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar RG ou CNH <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
@@ -838,7 +838,7 @@ get_header();
                                 required />
                         </label>
                         <label for="doc-comprovante-residencia-fiacao">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Comprovante de Residência <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
@@ -858,7 +858,7 @@ get_header();
                         </label>
 
                         <label for="doc-estado-civil-fiacao">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Documento <strong>*</strong>
                                 <i><strong>Certidão de Casamento ou Certidão de Nascimento.</strong> O Documento
@@ -909,7 +909,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="imposto-renda">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Imposto de Renda Último Exercício (Anexar IR e Recibo) <strong> *</strong>
                                 <i><strong>Anexar Imposto de Renda e Recibo.</strong> O Documento precisa
@@ -939,7 +939,7 @@ get_header();
                         </div>
                         <div class="formulario__fieldset">
                             <label for="doc-morador-1">
-                                <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                                <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                                 <span>
                                     Anexar Documento Caso Necessário
                                     <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
@@ -967,7 +967,7 @@ get_header();
 
                         <div class="formulario__fieldset">
                             <label for="doc-morador-2">
-                                <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                                <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                                 <span>
                                     Anexar Documento Caso Necessário
                                     <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
@@ -986,7 +986,7 @@ get_header();
 
                     <div class="formulario__fieldset">
                         <label for="comprovante-renda">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Comprovante de Renda 3 últimos extratos <br> bancários ou holerite <strong>
                                     *</strong>

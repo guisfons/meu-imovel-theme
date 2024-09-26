@@ -12,8 +12,8 @@ get_header();
 <main>
     <section class="formulario">
         <aside>
-            <figure><img src="./assets/img/logo.svg" alt=""></figure>
-            <figure><img src="./assets/img/imovel.webp" alt=""></figure>
+            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo.svg" alt=""></figure>
+            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/imovel.webp" alt=""></figure>
         </aside>
         <div class="formulario__container">
             <div class="formulario__content formulario__content--active">
@@ -45,7 +45,7 @@ get_header();
                             <input type="tel" name="rg" id="rg" placeholder="Ex. 00.000.000-0" required />
                         </label>
                         <label for="doc-rg">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar RG"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar RG"></figure>
                             <span>
                                 Anexar Documento <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
@@ -73,7 +73,7 @@ get_header();
                                 placeholder="Ex. 0000 0000 0000" required />
                         </label>
                         <label for="doc-titulo-eleitor">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Título de Eleitor"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Título de Eleitor"></figure>
                             <span>
                                 Anexar Título de Eleitor <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
@@ -97,7 +97,7 @@ get_header();
                     </div>
                     <div class="formulario__fieldset">
                         <label for="doc-nascimento">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Documento <strong>*</strong>
                                 <i>Certidão de Casamento ou Certidão de Nascimento. O Documento precisa estar no
@@ -174,7 +174,7 @@ get_header();
                     </div>
                     <div class="formulario__fieldset">
                         <label for="doc-comprovacao-renda">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Documento"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Documento <strong>*</strong>
                                 <i>3 Últimos holerites ou IR e Recibo. O Documento precisa estar no formato PNG,
@@ -191,7 +191,7 @@ get_header();
                     </div>
                     <div class="formulario__fieldset">
                         <label for="comprovante-endereco-residencial">
-                            <figure><img src="./assets/img/anexo.svg" alt="Anexar Comprovante de Endereço"></figure>
+                            <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Comprovante de Endereço"></figure>
                             <span>
                                 Anexar Comprovante de Endereço <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
