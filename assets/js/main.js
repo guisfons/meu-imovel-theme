@@ -143,7 +143,7 @@ function envioForm() {
         let form = $(this).closest('form')[0];
         let formData = new FormData(form);
         
-        formData.append('action', 'my_form');
+        formData.append('action', 'submit_form');
         
         $.ajax({
             url: myAjax.ajaxurl,
