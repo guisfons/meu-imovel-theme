@@ -139,11 +139,26 @@ function envioForm() {
     $('.formulario__submit').on('click', function(e) {
         e.preventDefault();
         erroForm();
-    
+        
+        let formTitle = $(this).closest('.formulario__content').find('.formulario__heading').text().trim()
         let form = $(this).closest('form')[0];
         let formData = new FormData(form);
-        
-        formData.append('action', 'submit_form');
+
+        if(formTitle == 'Formulário Para Locação - Pessoa Jurídica') {
+            formData.append('action', 'submit_form_pessoa_juridica');
+        }
+
+        if(formTitle == 'Formulário Para Locação - Pessoa Física') {
+            formData.append('action', 'submit_form_pessoa_fisica');
+        }
+
+        if(formTitle == 'Formulário Para Locação - Fiação') {
+            formData.append('action', 'submit_form_fiacao');
+        }
+
+        if(formTitle == 'Formulário Para Compra - Análise de Crédito') {
+            formData.append('action', 'submit_form_analise_credito');
+        }
         
         $.ajax({
             url: myAjax.ajaxurl,

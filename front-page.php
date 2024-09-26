@@ -104,7 +104,7 @@ get_header();
                                 <i><strong>Anexar o Contrato e sua Última alteração.</strong> O Documento precisa
                                     estar no formato PNG, JPEG ou PDF. Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="contrato-social" id="contrato-social"
+                            <input type="file" name="contrato_social" id="contrato-social"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
@@ -117,7 +117,7 @@ get_header();
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
                                     Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="comprovante-endereco" id="comprovante-endereco"
+                            <input type="file" name="comprovante_endereco" id="comprovante-endereco"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
@@ -130,7 +130,7 @@ get_header();
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
                                     Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="imposto-renda" id="imposto-renda"
+                            <input type="file" name="imposto_renda" id="imposto-renda"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
@@ -155,14 +155,14 @@ get_header();
                     <span>Representante: Sócio 1 <strong>*</strong></span>
 
                     <div class="formulario__fieldset">
-                        <label for="rg1">
+                        <label for="rg1-juridico">
                             <span>RG/CNH <strong>*</strong></span>
-                            <input type="text" id="rg1" name="rg1" placeholder="Ex. 00.000.000-0" required>
+                            <input type="text" id="rg1-juridico" name="rg1" placeholder="Ex. 00.000.000-0" required>
                         </label>
 
-                        <label for="cpf1">
+                        <label for="cpf1-juridico">
                             <span>CPF <strong>*</strong></span>
-                            <input type="text" id="cpf1" name="cpf1" placeholder="Ex. 000.000.000-00" required>
+                            <input type="text" id="cpf1-juridico" name="cpf1" placeholder="Ex. 000.000.000-00" required>
                         </label>
                     </div>
 
@@ -183,14 +183,14 @@ get_header();
                     <span>Representante: Sócio 2 <strong>*</strong></span>
 
                     <div class="formulario__fieldset">
-                        <label for="rg2">
+                        <label for="rg2-juridico">
                             <span>RG/CNH <strong>*</strong></span>
-                            <input type="text" id="rg2" name="rg2" placeholder="Ex. 00.000.000-0" required>
+                            <input type="text" id="rg2-juridico" name="rg2" placeholder="Ex. 00.000.000-0" required>
                         </label>
 
-                        <label for="cpf2">
+                        <label for="cpf2-juridico">
                             <span>CPF <strong>*</strong></span>
-                            <input type="text" id="cpf2" name="cpf2" placeholder="Ex. 000.000.000-00" required>
+                            <input type="text" id="cpf2-juridico" name="cpf2" placeholder="Ex. 000.000.000-00" required>
                         </label>
                     </div>
 
@@ -211,9 +211,9 @@ get_header();
 
                     <!-- Informações adicionais -->
                     <div class="formulario__fieldset">
-                        <label for="estado-civil">
+                        <label for="estado-civil-juridico">
                             <span>Estado Civil <strong>*</strong></span>
-                            <input type="text" id="estado-civil" name="estado_civil" placeholder="Ex. João Souza"
+                            <input type="text" id="estado-civil-juridico" name="estado_civil" placeholder="Ex. João Souza"
                                 required>
                         </label>
 
@@ -229,55 +229,55 @@ get_header();
                         </label>
                     </div>
                     <div class="formulario__fieldset">
-                        <label for="nome-conjuge">
+                        <label for="nome-conjuge-juridico">
                             <span>Nome Cônjuge</span>
-                            <input type="text" id="nome-conjuge" name="nome_conjuge" placeholder="Ex. João Souza"
+                            <input type="text" id="nome-conjuge-juridico" name="nome_conjuge" placeholder="Ex. João Souza"
                                 required>
                         </label>
-                        <label for="cpf-conjuge">
+                        <label for="cpf-conjuge-juridico">
                             <span>CPF <strong>*</strong></span>
-                            <input type="text" id="cpf-conjuge" name="cpf_conjuge" placeholder="Ex. 000.000.000-00"
+                            <input type="text" id="cpf-conjuge-juridico" name="cpf_conjuge" placeholder="Ex. 000.000.000-00"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="celular">
+                        <label for="celular-juridico">
                             <span>Número de Celular <strong>*</strong></span>
-                            <input type="text" id="celular" name="celular" placeholder="Ex. (DDD) 9-9999 9999"
+                            <input type="text" id="celular-juridico" name="celular" placeholder="Ex. (DDD) 9-9999 9999"
                                 required>
                         </label>
-                        <label for="email">
+                        <label for="email-juridico">
                             <span>E-mail <strong>*</strong></span>
-                            <input type="email" id="email" name="email" placeholder="Ex. mariasilva@email.com"
+                            <input type="email" id="email-juridico" name="email" placeholder="Ex. mariasilva@email.com"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="nacionalidade">
+                        <label for="nacionalidade-juridico">
                             <span>Nacionalidade <strong>*</strong></span>
-                            <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex. Brasileiro"
+                            <input type="text" id="nacionalidade-juridico" name="nacionalidade" placeholder="Ex. Brasileiro"
                                 required>
                         </label>
-                        <label for="profissao">
+                        <label for="profissao-juridico">
                             <span>Profissão <strong>*</strong></span>
-                            <input type="text" id="profissao" name="profissao" placeholder="Ex. Cozinheiro"
+                            <input type="text" id="profissao-juridico" name="profissao" placeholder="Ex. Cozinheiro"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="valor-aluguel">
+                        <label for="valor-aluguel-juridico">
                             <span>Você paga aluguel? Se sim, qual o valor?</span>
-                            <input type="text" id="valor-aluguel" name="valor_aluguel" placeholder="Ex. R$5.000,00">
+                            <input type="text" id="valor-aluguel-juridico" name="valor_aluguel" placeholder="Ex. R$5.000,00">
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="locador">
+                        <label for="locador-juridico">
                             <span>Locador <strong>*</strong></span>
-                            <input type="text" id="locador" name="locador" placeholder="Ex. Nome ou Empresa"
+                            <input type="text" id="locador-juridico" name="locador" placeholder="Ex. Nome ou Empresa"
                                 required>
                         </label>
                         <label for="telefone-locador-juridico">
@@ -908,14 +908,14 @@ get_header();
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="imposto-renda">
+                        <label for="imposto-renda-fiacao">
                             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Imposto de Renda Último Exercício (Anexar IR e Recibo) <strong> *</strong>
                                 <i><strong>Anexar Imposto de Renda e Recibo.</strong> O Documento precisa
                                     estar no formato PNG, JPEG ou PDF. Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="imposto-renda" id="imposto-renda"
+                            <input type="file" name="imposto_renda" id="imposto-renda-fiacao"
                                 accept=".png, .jpeg, .jpg, .pdf" multiple hidden required />
                         </label>
                     </div>

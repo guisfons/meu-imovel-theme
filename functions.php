@@ -306,51 +306,163 @@ function fix_svg() {
 add_action( 'admin_head', 'fix_svg' );
 
 // Functions for form
-add_action('wp_ajax_submit_form', 'handle_form_submission');
-add_action('wp_ajax_nopriv_submit_form', 'handle_form_submission');
 
-function handle_form_submission() {
-    if (!isset($_POST['name']) || !isset($_POST['email'])) {
-        wp_send_json_error('Required fields missing.');
-        wp_die();
-    }
-
-    $name = sanitize_text_field($_POST['name']);
+add_action('wp_ajax_submit_form_pessoa_juridica', 'handle_form_locacao_pessoa_juridica');
+add_action('wp_ajax_nopriv_submit_form_pessoa_juridica', 'handle_form_locacao_pessoa_juridica');
+function handle_form_locacao_pessoa_juridica() {
+    // Sanitizando os campos recebidos
+    $razao_social = sanitize_text_field($_POST['razao-social']);
+    $cnpj = sanitize_text_field($_POST['cnpj']);
+    $inscricao_estadual = sanitize_text_field($_POST['inscricao-estadual']);
+    $nome_representante = sanitize_text_field($_POST['nome-representante']);
+    $cpf_representante = sanitize_text_field($_POST['cpf-representante']);
     $email = sanitize_email($_POST['email']);
-    $message = sanitize_textarea_field($_POST['message']);
-
-    // Prepare email headers
+    $telefone = sanitize_text_field($_POST['telefone']);
+    $endereco = sanitize_text_field($_POST['endereco']);
+    $cep = sanitize_text_field($_POST['cep']);
+    $finalidade_locacao = sanitize_text_field($_POST['finalidade_locacao']);
+    $endereco_imovel = sanitize_text_field($_POST['endereco_imovel']);
+    $valor_locacao = sanitize_text_field($_POST['valor_locacao']);
+    $garantia_escolhida = sanitize_text_field($_POST['garantia_escolhida']);
+    $contrato_social = $_FILES['contrato_social'];
+    $comprovante_endereco = $_FILES['comprovante_endereco'];
+    $imposto_renda = sanitize_text_field($_POST['imposto_renda']);
+    $faturamento = sanitize_text_field($_POST['faturamento']);
+    
+    // Informações dos sócios
+    $rg1 = sanitize_text_field($_POST['rg1']);
+    $cpf1 = sanitize_text_field($_POST['cpf1']);
+    $doc_socio1 = $_FILES['doc_socio1'];
+    
+    $rg2 = sanitize_text_field($_POST['rg2']);
+    $cpf2 = sanitize_text_field($_POST['cpf2']);
+    $doc_socio2 = $_FILES['doc_socio2'];
+    
+    // Informações do cônjuge
+    $estado_civil = sanitize_text_field($_POST['estado_civil']);
+    $doc_estado_civil_juridico = $_FILES['doc_estado_civil_juridico'];
+    $nome_conjuge = sanitize_text_field($_POST['nome_conjuge']);
+    $cpf_conjuge = sanitize_text_field($_POST['cpf_conjuge']);
+    $celular = sanitize_text_field($_POST['celular']);
+    $nacionalidade = sanitize_text_field($_POST['nacionalidade']);
+    $profissao = sanitize_text_field($_POST['profissao']);
+    
+    // Outros campos
+    $valor_aluguel = sanitize_text_field($_POST['valor_aluguel']);
+    $locador = sanitize_text_field($_POST['locador']);
+    $motivo_mudanca = sanitize_text_field($_POST['motivo_mudanca']);
+    
+    // Preparando os cabeçalhos do e-mail
     $to = 'guilhermesfonsecaa@gmail.com';
-    $subject = 'New Form Submission';
+    $subject = 'Formulário Para Locação - Pessoa Jurídica';
     $headers = array('Content-Type: text/html; charset=UTF-8');
     
-    $body = "Name: $name<br>Email: $email<br>Message: $message<br>";
+    // Montando o corpo do e-mail
+    $body = "Razão Social: $razao_social<br>
+             CNPJ: $cnpj<br>
+             Inscrição Estadual: $inscricao_estadual<br>
+             Nome do Representante: $nome_representante<br>
+             CPF do Representante: $cpf_representante<br>
+             E-mail: $email<br>
+             Telefone: $telefone<br>
+             Endereço: $endereco<br>
+             CEP: $cep<br>
+             Finalidade da Locação: $finalidade_locacao<br>
+             Endereço do Imóvel: $endereco_imovel<br>
+             Valor da Locação: $valor_locacao<br>
+             Garantia Escolhida: $garantia_escolhida<br>
+             Imposto de Renda: $imposto_renda<br>
+             Faturamento: $faturamento<br>
+             RG do Sócio 1: $rg1<br>
+             CPF do Sócio 1: $cpf1<br>
+             RG do Sócio 2: $rg2<br>
+             CPF do Sócio 2: $cpf2<br>
+             Estado Civil: $estado_civil<br>
+             Nome do Cônjuge: $nome_conjuge<br>
+             CPF do Cônjuge: $cpf_conjuge<br>
+             Celular: $celular<br>
+             Nacionalidade: $nacionalidade<br>
+             Profissão: $profissao<br>
+             Valor do Aluguel: $valor_aluguel<br>
+             Locador: $locador<br>
+             Motivo da Mudança: $motivo_mudanca<br>";
+    
+    // Validando e enviando os documentos
+    $attachments = array();
 
-    // Handle file upload (if any)
-    if (!empty($_FILES['file']['name'])) {
-        $file = $_FILES['file'];
-
-        // Validate the file type and size (example: 2MB limit)
-        if ($file['size'] <= 2097152 && in_array($file['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
-            // Upload the file to WordPress upload directory
-            $uploaded_file = wp_handle_upload($file, array('test_form' => false));
-
+    // Comprovante de Endereço
+    if (!empty($comprovante_endereco['name'])) {
+        if ($comprovante_endereco['size'] <= 2097152 && in_array($comprovante_endereco['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
+            $uploaded_file = wp_handle_upload($comprovante_endereco, array('test_form' => false));
             if ($uploaded_file && !isset($uploaded_file['error'])) {
-                // Attach the uploaded file to the email
-                $attachment = $uploaded_file['file'];
-                wp_mail($to, $subject, $body, $headers, $attachment);
-                wp_send_json_success('Form submitted successfully with attachment.');
+                $attachments[] = $uploaded_file['file'];
             } else {
-                wp_send_json_error('Error uploading file.');
+                wp_send_json_error('Erro ao fazer upload do comprovante de endereço.');
+                wp_die();
             }
         } else {
-            wp_send_json_error('Invalid file type or size.');
+            wp_send_json_error('Tipo ou tamanho do arquivo inválido para o comprovante de endereço.');
+            wp_die();
         }
-    } else {
-        // Send email without attachment
-        wp_mail($to, $subject, $body, $headers);
-        wp_send_json_success('Form submitted successfully.');
     }
 
-    wp_die();
+    // Contrato Social
+    if (!empty($contrato_social['name'])) {
+        if ($contrato_social['size'] <= 2097152 && in_array($contrato_social['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
+            $uploaded_file = wp_handle_upload($contrato_social, array('test_form' => false));
+            if ($uploaded_file && !isset($uploaded_file['error'])) {
+                $attachments[] = $uploaded_file['file'];
+            } else {
+                wp_send_json_error('Erro ao fazer upload do contrato social.');
+                wp_die();
+            }
+        } else {
+            wp_send_json_error('Tipo ou tamanho do arquivo inválido para o contrato social.');
+            wp_die();
+        }
+    }
+
+    // Documentos dos Sócios
+    foreach (array($doc_socio1, $doc_socio2) as $key => $doc) {
+        if (!empty($doc['name'])) {
+            if ($doc['size'] <= 2097152 && in_array($doc['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
+                $uploaded_file = wp_handle_upload($doc, array('test_form' => false));
+                if ($uploaded_file && !isset($uploaded_file['error'])) {
+                    $attachments[] = $uploaded_file['file'];
+                } else {
+                    wp_send_json_error("Erro ao fazer upload do documento do sócio " . ($key + 1) . ".");
+                    wp_die();
+                }
+            } else {
+                wp_send_json_error("Tipo ou tamanho do arquivo inválido para o documento do sócio " . ($key + 1) . ".");
+                wp_die();
+            }
+        }
+    }
+
+    // Documento do Cônjuge
+    if (!empty($doc_estado_civil_juridico['name'])) {
+        if ($doc_estado_civil_juridico['size'] <= 2097152 && in_array($doc_estado_civil_juridico['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
+            $uploaded_file = wp_handle_upload($doc_estado_civil_juridico, array('test_form' => false));
+            if ($uploaded_file && !isset($uploaded_file['error'])) {
+                $attachments[] = $uploaded_file['file'];
+            } else {
+                wp_send_json_error('Erro ao fazer upload do documento de estado civil do cônjuge.');
+                wp_die();
+            }
+        } else {
+            wp_send_json_error('Tipo ou tamanho do arquivo inválido para o documento de estado civil do cônjuge.');
+            wp_die();
+        }
+    }
+
+    // Enviando o e-mail com os anexos
+    send_email_with_attachment($to, $subject, $body, $headers, $attachments);
+    wp_send_json_success('Formulário enviado com sucesso.');
+
+    wp_die(); // Termina a execução
+}
+
+function send_email_with_attachment($to, $subject, $body, $headers, $attachments) {
+    wp_mail($to, $subject, $body, $headers, $attachments);
 }
