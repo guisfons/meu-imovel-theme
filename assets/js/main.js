@@ -140,7 +140,10 @@ function envioForm() {
         e.preventDefault()
         erroForm()
 
-        var formData = new FormData($(this))
+        let form = $(this).closest('form')[0]
+        let formData = new FormData(form);
+        
+        formData.append('action', 'my_form');
         
         $.ajax({
             url: myAjax.ajaxurl,

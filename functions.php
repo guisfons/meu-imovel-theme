@@ -315,7 +315,7 @@ function my_process_form() {
         wp_send_json_error('Nenhum dado enviado');
     }
 
-    wp_die(); // Termina a execução
+    wp_die();
 }
-add_action('wp_ajax_my_form', 'my_process_form'); // Para usuários logados
-add_action('wp_ajax_nopriv_my_form', 'my_process_form'); // Para usuários não logados
+add_action('wp_ajax_my_form', 'my_process_form');
+add_action('wp_ajax_nopriv_my_form', 'my_process_form');
