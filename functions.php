@@ -310,20 +310,11 @@ add_action( 'admin_head', 'fix_svg' );
 add_action('wp_ajax_submit_form_pessoa_juridica', 'handle_form_locacao_pessoa_juridica');
 add_action('wp_ajax_nopriv_submit_form_pessoa_juridica', 'handle_form_locacao_pessoa_juridica');
 function handle_form_locacao_pessoa_juridica() {
-    // Sanitizando os campos recebidos
-    $razao_social = sanitize_text_field($_POST['razao-social']);
-    $cnpj = sanitize_text_field($_POST['cnpj']);
-    $inscricao_estadual = sanitize_text_field($_POST['inscricao-estadual']);
-    $nome_representante = sanitize_text_field($_POST['nome-representante']);
-    $cpf_representante = sanitize_text_field($_POST['cpf-representante']);
-    $email = sanitize_email($_POST['email']);
-    $telefone = sanitize_text_field($_POST['telefone']);
-    $endereco = sanitize_text_field($_POST['endereco']);
-    $cep = sanitize_text_field($_POST['cep']);
     $finalidade_locacao = sanitize_text_field($_POST['finalidade_locacao']);
     $endereco_imovel = sanitize_text_field($_POST['endereco_imovel']);
     $valor_locacao = sanitize_text_field($_POST['valor_locacao']);
     $garantia_escolhida = sanitize_text_field($_POST['garantia_escolhida']);
+    $cnpj = sanitize_text_field($_POST['cnpj']);
     $contrato_social = $_FILES['contrato_social'];
     $comprovante_endereco = $_FILES['comprovante_endereco'];
     $imposto_renda = sanitize_text_field($_POST['imposto_renda']);
@@ -344,6 +335,7 @@ function handle_form_locacao_pessoa_juridica() {
     $nome_conjuge = sanitize_text_field($_POST['nome_conjuge']);
     $cpf_conjuge = sanitize_text_field($_POST['cpf_conjuge']);
     $celular = sanitize_text_field($_POST['celular']);
+    $email = sanitize_email($_POST['email']);
     $nacionalidade = sanitize_text_field($_POST['nacionalidade']);
     $profissao = sanitize_text_field($_POST['profissao']);
     
@@ -358,100 +350,60 @@ function handle_form_locacao_pessoa_juridica() {
     $headers = array('Content-Type: text/html; charset=UTF-8');
     
     // Montando o corpo do e-mail
-    $body = "Razão Social: $razao_social<br>
-             CNPJ: $cnpj<br>
-             Inscrição Estadual: $inscricao_estadual<br>
-             Nome do Representante: $nome_representante<br>
-             CPF do Representante: $cpf_representante<br>
-             E-mail: $email<br>
-             Telefone: $telefone<br>
-             Endereço: $endereco<br>
-             CEP: $cep<br>
-             Finalidade da Locação: $finalidade_locacao<br>
-             Endereço do Imóvel: $endereco_imovel<br>
-             Valor da Locação: $valor_locacao<br>
-             Garantia Escolhida: $garantia_escolhida<br>
-             Imposto de Renda: $imposto_renda<br>
-             Faturamento: $faturamento<br>
-             RG do Sócio 1: $rg1<br>
-             CPF do Sócio 1: $cpf1<br>
-             RG do Sócio 2: $rg2<br>
-             CPF do Sócio 2: $cpf2<br>
-             Estado Civil: $estado_civil<br>
-             Nome do Cônjuge: $nome_conjuge<br>
-             CPF do Cônjuge: $cpf_conjuge<br>
-             Celular: $celular<br>
-             Nacionalidade: $nacionalidade<br>
-             Profissão: $profissao<br>
-             Valor do Aluguel: $valor_aluguel<br>
-             Locador: $locador<br>
-             Motivo da Mudança: $motivo_mudanca<br>";
+    $body = "<strong>Finalidade da Locação:</strong> $finalidade_locacao<br>
+             <strong>Endereço do Imóvel:</strong> $endereco_imovel<br>
+             <strong>Valor da Locação:</strong> $valor_locacao<br>
+             <strong>Garantia Escolhida:</strong> $garantia_escolhida<br>
+             <strong>CNPJ:</strong> $cnpj<br>
+             <strong>Imposto de Renda:</strong> $imposto_renda<br>
+             <strong>Faturamento:</strong> $faturamento<br>
+             <strong>RG do Sócio 1:</strong> $rg1<br>
+             <strong>CPF do Sócio 1:</strong> $cpf1<br>
+             <strong>RG do Sócio 2:</strong> $rg2<br>
+             <strong>CPF do Sócio 2:</strong> $cpf2<br>
+             <strong>Estado Civil:</strong> $estado_civil<br>
+             <strong>Nome do Cônjuge:</strong> $nome_conjuge<br>
+             <strong>CPF do Cônjuge:</strong> $cpf_conjuge<br>
+             <strong>Celular:</strong> $celular<br>
+             <strong>E-mail:</strong> $email<br>
+             <strong>Nacionalidade:</strong> $nacionalidade<br>
+             <strong>Profissão:</strong> $profissao<br>
+             <strong>Valor do Aluguel:</strong> $valor_aluguel<br>
+             <strong>Locador:</strong> $locador<br>
+             <strong>Motivo da Mudança:</strong> $motivo_mudanca<br>";
     
     // Validando e enviando os documentos
     $attachments = array();
 
-    // Comprovante de Endereço
-    if (!empty($comprovante_endereco['name'])) {
-        if ($comprovante_endereco['size'] <= 2097152 && in_array($comprovante_endereco['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
-            $uploaded_file = wp_handle_upload($comprovante_endereco, array('test_form' => false));
-            if ($uploaded_file && !isset($uploaded_file['error'])) {
-                $attachments[] = $uploaded_file['file'];
-            } else {
-                wp_send_json_error('Erro ao fazer upload do comprovante de endereço.');
-                wp_die();
-            }
-        } else {
-            wp_send_json_error('Tipo ou tamanho do arquivo inválido para o comprovante de endereço.');
-            wp_die();
-        }
-    }
-
-    // Contrato Social
-    if (!empty($contrato_social['name'])) {
-        if ($contrato_social['size'] <= 2097152 && in_array($contrato_social['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
-            $uploaded_file = wp_handle_upload($contrato_social, array('test_form' => false));
-            if ($uploaded_file && !isset($uploaded_file['error'])) {
-                $attachments[] = $uploaded_file['file'];
-            } else {
-                wp_send_json_error('Erro ao fazer upload do contrato social.');
-                wp_die();
-            }
-        } else {
-            wp_send_json_error('Tipo ou tamanho do arquivo inválido para o contrato social.');
-            wp_die();
-        }
-    }
-
-    // Documentos dos Sócios
-    foreach (array($doc_socio1, $doc_socio2) as $key => $doc) {
-        if (!empty($doc['name'])) {
-            if ($doc['size'] <= 2097152 && in_array($doc['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
-                $uploaded_file = wp_handle_upload($doc, array('test_form' => false));
+    // Função para fazer upload e adicionar ao array de anexos
+    function add_attachment($file, &$attachments) {
+        if (!empty($file['name'])) {
+            if ($file['size'] <= 2097152 && in_array($file['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
+                $uploaded_file = wp_handle_upload($file, array('test_form' => false));
                 if ($uploaded_file && !isset($uploaded_file['error'])) {
                     $attachments[] = $uploaded_file['file'];
                 } else {
-                    wp_send_json_error("Erro ao fazer upload do documento do sócio " . ($key + 1) . ".");
-                    wp_die();
+                    return "Erro ao fazer upload do arquivo: " . $file['name'];
                 }
             } else {
-                wp_send_json_error("Tipo ou tamanho do arquivo inválido para o documento do sócio " . ($key + 1) . ".");
-                wp_die();
+                return "Tipo ou tamanho do arquivo inválido: " . $file['name'];
             }
         }
+        return null; // Se tudo ocorreu bem
     }
 
-    // Documento do Cônjuge
-    if (!empty($doc_estado_civil_juridico['name'])) {
-        if ($doc_estado_civil_juridico['size'] <= 2097152 && in_array($doc_estado_civil_juridico['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
-            $uploaded_file = wp_handle_upload($doc_estado_civil_juridico, array('test_form' => false));
-            if ($uploaded_file && !isset($uploaded_file['error'])) {
-                $attachments[] = $uploaded_file['file'];
-            } else {
-                wp_send_json_error('Erro ao fazer upload do documento de estado civil do cônjuge.');
-                wp_die();
-            }
-        } else {
-            wp_send_json_error('Tipo ou tamanho do arquivo inválido para o documento de estado civil do cônjuge.');
+    // Adicionando todos os documentos ao array de anexos
+    $errors = array();
+    $errors[] = add_attachment($comprovante_endereco, $attachments);
+    $errors[] = add_attachment($contrato_social, $attachments);
+    $errors[] = add_attachment($doc_socio1, $attachments);
+    $errors[] = add_attachment($doc_socio2, $attachments);
+    $errors[] = add_attachment($doc_estado_civil_juridico, $attachments);
+
+    // Verificando se houve erros
+    foreach ($errors as $error) {
+        if ($error) {
+            wp_send_json_error($error);
             wp_die();
         }
     }
