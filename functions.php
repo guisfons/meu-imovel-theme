@@ -304,3 +304,18 @@ function fix_svg() {
         </style>';
 }
 add_action( 'admin_head', 'fix_svg' );
+
+// Functions for form
+
+function my_process_form() {
+    if (isset($_POST)) {
+        $response = array('success' => true, 'data' => $_POST);
+        wp_send_json($response);
+    } else {
+        wp_send_json_error('Nenhum dado enviado');
+    }
+
+    wp_die(); // Termina a execução
+}
+add_action('wp_ajax_my_form', 'my_process_form'); // Para usuários logados
+add_action('wp_ajax_nopriv_my_form', 'my_process_form'); // Para usuários não logados
