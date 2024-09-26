@@ -1,5 +1,11 @@
 <?php
 get_header();
+
+if (isset($_GET['tipo_de_locacao'])) {
+    $tipo_locacao = $_GET['tipo_de_locacao'];
+  } else {
+    $tipo_locacao = '';
+}
 ?>
 
 <main>
@@ -8,8 +14,9 @@ get_header();
             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo.svg" alt=""></figure>
             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/imovel.webp" alt=""></figure>
         </aside>
+        <!-- // (Condition)?(thing's to do if condition true):(thing's to do if condition false); -->
         <div class="formulario__container">
-            <div class="formulario__content formulario__content--active formulario__content--1" data-index="1">
+            <div class="formulario__content <?php echo ($tipo_locacao == '') ? 'formulario__content--active' : ''; ?> formulario__content--1" data-index="1">
                 <article>
                     <span>Locação de Imóvel</span>
                     <p>Vamos dar início a nossa jornada, para começar qual é o tipo de locação?</p>
@@ -21,7 +28,7 @@ get_header();
                 </div>
             </div>
 
-            <div class="formulario__content formulario__content--form" data-categ="juridico">
+            <div class="formulario__content formulario__content--form <?php echo ($tipo_locacao == 'juridico') ? 'formulario__content--active' : ''; ?>" data-categ="juridico">
                 <span class="formulario__heading">Formulário Para Locação - Pessoa Jurídica</span>
 
                 <form method="POST" enctype="multipart/form-data">
@@ -31,7 +38,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_residencial_juridica" name="finalidade_locacao"
-                                    value="Holerite" checked hidden required>
+                                    value="Residencial" checked hidden required>
                                 <span>Residencial</span>
                             </div>
                         </label>
@@ -39,7 +46,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_comercial" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Comercial" hidden required>
                                 <span>Comercial</span>
                             </div>
                         </label>
@@ -49,7 +56,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_locatario" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Locatário" hidden required>
                                 <span>Locatário</span>
                             </div>
                         </label>
@@ -57,7 +64,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_fiador" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Fiador" hidden required>
                                 <span>Fiador</span>
                             </div>
                         </label>
@@ -318,7 +325,7 @@ get_header();
                 </form>
             </div>
 
-            <div class="formulario__content formulario__content--form" data-categ="fisica">
+            <div class="formulario__content formulario__content--form<?php echo ($tipo_locacao == 'fisica') ? 'formulario__content--active' : ''; ?>" data-categ="fisica">
                 <span class="formulario__heading">Formulário Para Locação - Pessoa Física</span>
 
                 <form method="POST" enctype="multipart/form-data">
@@ -328,7 +335,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_residencial_fisica" name="finalidade_locacao"
-                                    value="Holerite" checked hidden required>
+                                    value="Residencial" checked hidden required>
                                 <span>Residencial</span>
                             </div>
                         </label>
@@ -336,7 +343,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_comercial" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Comercial" hidden required>
                                 <span>Comercial</span>
                             </div>
                         </label>
@@ -346,7 +353,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_locatario" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Locatário" hidden required>
                                 <span>Locatário</span>
                             </div>
                         </label>
@@ -354,7 +361,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_fiador" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Fiador" hidden required>
                                 <span>Fiador</span>
                             </div>
                         </label>
@@ -669,7 +676,7 @@ get_header();
                 </form>
             </div>
 
-            <div class="formulario__content formulario__content--form" data-categ="fiacao">
+            <div class="formulario__content formulario__content--form <?php echo ($tipo_locacao == 'fiacao') ? 'formulario__content--active' : ''; ?>" data-categ="fiacao">
                 <span class="formulario__heading">Formulário Para Locação - Fiação</span>
 
                 <form method="POST" enctype="multipart/form-data">
@@ -679,7 +686,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_residencial_fiacao" name="finalidade_locacao"
-                                    value="Holerite" checked hidden required>
+                                    value="Residencial" checked hidden required>
                                 <span>Residencial</span>
                             </div>
                         </label>
@@ -687,7 +694,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_comercial" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Comercial" hidden required>
                                 <span>Comercial</span>
                             </div>
                         </label>
@@ -697,7 +704,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_locatario" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Locatário" hidden required>
                                 <span>Locatário</span>
                             </div>
                         </label>
@@ -705,7 +712,7 @@ get_header();
                         <label>
                             <div class="formulario__radio">
                                 <input type="radio" id="finalidade_locacao_fiador" name="finalidade_locacao"
-                                    value="Holerite" hidden required>
+                                    value="Fiador" hidden required>
                                 <span>Fiador</span>
                             </div>
                         </label>

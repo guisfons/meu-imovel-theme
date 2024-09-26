@@ -314,11 +314,11 @@ function handle_form_locacao_pessoa_juridica() {
     $endereco_imovel = sanitize_text_field($_POST['endereco_imovel']);
     $valor_locacao = sanitize_text_field($_POST['valor_locacao']);
     $garantia_escolhida = sanitize_text_field($_POST['garantia_escolhida']);
-    $cnpj = sanitize_text_field($_POST['cnpj']);
+    $cnpj = $_FILES['cnpj'];
     $contrato_social = $_FILES['contrato_social'];
     $comprovante_endereco = $_FILES['comprovante_endereco'];
-    $imposto_renda = sanitize_text_field($_POST['imposto_renda']);
-    $faturamento = sanitize_text_field($_POST['faturamento']);
+    $imposto_renda = $_FILES['imposto_renda'];
+    $faturamento = $_FILES['faturamento'];
     
     // Informações dos sócios
     $rg1 = sanitize_text_field($_POST['rg1']);
@@ -344,8 +344,14 @@ function handle_form_locacao_pessoa_juridica() {
     $locador = sanitize_text_field($_POST['locador']);
     $motivo_mudanca = sanitize_text_field($_POST['motivo_mudanca']);
     
-    // Preparando os cabeçalhos do e-mail
-    $to = 'guilhermesfonsecaa@gmail.com';
+    $to = array(
+        'guilhermesfonsecaa@gmail.com',
+        'analise@meuimovel.imb.br',
+        'contato@meuimovel.imb.br'
+    );
+
+    $to_string = implode(',', $to);
+
     $subject = 'Formulário Para Locação - Pessoa Jurídica';
     $headers = array('Content-Type: text/html; charset=UTF-8');
     
@@ -378,16 +384,16 @@ function handle_form_locacao_pessoa_juridica() {
     // Função para fazer upload e adicionar ao array de anexos
     function add_attachment($file, &$attachments) {
         if (!empty($file['name'])) {
-            if ($file['size'] <= 2097152 && in_array($file['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
+            // if ($file['size'] <= 2097152 && in_array($file['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
                 $uploaded_file = wp_handle_upload($file, array('test_form' => false));
                 if ($uploaded_file && !isset($uploaded_file['error'])) {
                     $attachments[] = $uploaded_file['file'];
                 } else {
                     return "Erro ao fazer upload do arquivo: " . $file['name'];
                 }
-            } else {
-                return "Tipo ou tamanho do arquivo inválido: " . $file['name'];
-            }
+            // } else {
+            //     return "Tipo ou tamanho do arquivo inválido: " . $file['name'];
+            // }
         }
         return null; // Se tudo ocorreu bem
     }
@@ -408,11 +414,10 @@ function handle_form_locacao_pessoa_juridica() {
         }
     }
 
-    // Enviando o e-mail com os anexos
-    send_email_with_attachment($to, $subject, $body, $headers, $attachments);
+    send_email_with_attachment($to_string, $subject, $body, $headers, $attachments);
     wp_send_json_success('Formulário enviado com sucesso.');
 
-    wp_die(); // Termina a execução
+    wp_die();
 }
 
 function send_email_with_attachment($to, $subject, $body, $headers, $attachments) {
