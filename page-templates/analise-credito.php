@@ -27,7 +27,7 @@ get_header();
             <div class="formulario__content formulario__content--form">
                 <span class="formulario__heading">Formulário Para Compra - Análise de Crédito</span>
 
-                <form action="" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="formulario__fieldset">
                         <label for="nome-completo">
                             <span>Nome Completo <strong>*</strong></span>

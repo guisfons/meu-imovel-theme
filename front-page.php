@@ -24,13 +24,13 @@ get_header();
             <div class="formulario__content formulario__content--form" data-categ="juridico">
                 <span class="formulario__heading">Formulário Para Locação - Pessoa Jurídica</span>
 
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="formulario__fieldset">
                         <span>Qual é a finalidade da locação?</span>
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_residencial" name="finalidade_locacao"
+                                <input type="radio" id="finalidade_locacao_residencial_juridica" name="finalidade_locacao"
                                     value="Holerite" checked hidden required>
                                 <span>Residencial</span>
                             </div>
@@ -280,17 +280,17 @@ get_header();
                             <input type="text" id="locador" name="locador" placeholder="Ex. Nome ou Empresa"
                                 required>
                         </label>
-                        <label for="telefone-locador">
+                        <label for="telefone-locador-juridico">
                             <span>Telefone <strong>*</strong></span>
-                            <input type="text" id="telefone-locador" name="telefone_locador"
+                            <input type="text" id="telefone-locador-juridico" name="telefone_locador"
                                 placeholder="Ex. (DDD) 9-9999 9999" required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="motivo-mudanca">
+                        <label for="motivo-mudanca-juridico">
                             <span>Motivo da Mudança <strong>*</strong></span>
-                            <textarea id="motivo-mudanca" name="motivo_mudanca" placeholder="Escreva aqui"
+                            <textarea id="motivo-mudanca-juridico" name="motivo_mudanca" placeholder="Escreva aqui"
                                 required></textarea>
                         </label>
                     </div>
@@ -321,13 +321,13 @@ get_header();
             <div class="formulario__content formulario__content--form" data-categ="fisica">
                 <span class="formulario__heading">Formulário Para Locação - Pessoa Física</span>
 
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="formulario__fieldset">
                         <span>Qual é a finalidade da locação?</span>
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_residencial" name="finalidade_locacao"
+                                <input type="radio" id="finalidade_locacao_residencial_fisica" name="finalidade_locacao"
                                     value="Holerite" checked hidden required>
                                 <span>Residencial</span>
                             </div>
@@ -631,24 +631,24 @@ get_header();
                             <input type="text" id="locador" name="locador" placeholder="Ex. Nome ou Empresa"
                                 required>
                         </label>
-                        <label for="telefone-locador">
+                        <label for="telefone-locador-fisico">
                             <span>Telefone <strong>*</strong></span>
-                            <input type="text" id="telefone-locador" name="telefone_locador"
+                            <input type="text" id="telefone-locador-fisico" name="telefone_locador"
                                 placeholder="Ex. (DDD) 9-9999 9999" required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="motivo-mudanca">
+                        <label for="motivo-mudanca-fisico">
                             <span>Motivo da Mudança <strong>*</strong></span>
-                            <textarea id="motivo-mudanca" name="motivo_mudanca" placeholder="Escreva aqui"
+                            <textarea id="motivo-mudanca-fisico" name="motivo_mudanca" placeholder="Escreva aqui"
                                 required></textarea>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="accept-fisico">
-                            <input type="checkbox" name="accept-fisico" id="accept-fisico" hidden required>
+                        <label for="acceptance-fisico">
+                            <input type="checkbox" name="acceptance" id="acceptance-fisico" hidden required>
                             <span class="formulario__accept">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -672,13 +672,13 @@ get_header();
             <div class="formulario__content formulario__content--form" data-categ="fiacao">
                 <span class="formulario__heading">Formulário Para Locação - Fiação</span>
 
-                <form action="#" method="POST" enctype="multipart/form-data">
+                <form method="POST" enctype="multipart/form-data">
                     <div class="formulario__fieldset">
                         <span>Qual é a finalidade da locação?</span>
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_residencial" name="finalidade_locacao"
+                                <input type="radio" id="finalidade_locacao_residencial_fiacao" name="finalidade_locacao"
                                     value="Holerite" checked hidden required>
                                 <span>Residencial</span>
                             </div>
@@ -1012,24 +1012,24 @@ get_header();
                             <input type="text" id="locador" name="locador" placeholder="Ex. Nome ou Empresa"
                                 required>
                         </label>
-                        <label for="telefone-locador">
+                        <label for="telefone-locador-fiacao">
                             <span>Telefone <strong>*</strong></span>
-                            <input type="text" id="telefone-locador" name="telefone_locador"
+                            <input type="text" id="telefone-locador-fiacao" name="telefone_locador"
                                 placeholder="Ex. (DDD) 9-9999 9999" required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="motivo-mudanca">
+                        <label for="motivo-mudanca-fiacao">
                             <span>Motivo da Mudança <strong>*</strong></span>
-                            <textarea id="motivo-mudanca" name="motivo_mudanca" placeholder="Escreva aqui"
+                            <textarea id="motivo-mudanca-fiacao" name="motivo_mudanca" placeholder="Escreva aqui"
                                 required></textarea>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="accept-fisico">
-                            <input type="checkbox" name="accept-fisico" id="accept-fisico" hidden required>
+                        <label for="acceptance-fiacao">
+                            <input type="checkbox" name="acceptance" id="acceptance-fiacao" hidden required>
                             <span class="formulario__accept">
                                 <svg width="11" height="9" viewBox="0 0 11 9" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">

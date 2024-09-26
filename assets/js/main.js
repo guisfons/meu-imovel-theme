@@ -137,10 +137,10 @@ function salvarInformacoes() {
 
 function envioForm() {
     $('.formulario__submit').on('click', function(e) {
-        e.preventDefault()
-        erroForm()
-
-        let form = $(this).closest('form')[0]
+        e.preventDefault();
+        erroForm();
+    
+        let form = $(this).closest('form')[0];
         let formData = new FormData(form);
         
         formData.append('action', 'my_form');
@@ -152,11 +152,18 @@ function envioForm() {
             contentType: false,
             processData: false,
             success: function(response) {
-                $('.formulario__modal').addClass('formulario__modal--active formulario__modal--success')
+                if (response.success) {
+                    console.log(response.success);
+                    
+                    $('.formulario__modal').addClass('formulario__modal--active formulario__modal--success');
+                } else {
+                    $('.formulario__modal').addClass('formulario__modal--active formulario__modal--error');
+                    $('.formulario__modal-error').append('<span>Ops! Algo deu errado.</span><p>Erro no envio do formulário.</p>');
+                }
             },
             error: function(xhr, status, error) {
-                $('.formulario__modal').addClass('formulario__modal--active formulario__modal--error')
-                $('.formulario__modal-error').append('<span>Ops! Parece que algo deu errado</span><p>Ocorreu um erro ao enviar o formulário.</p>')
+                $('.formulario__modal').addClass('formulario__modal--active formulario__modal--error');
+                $('.formulario__modal-error').append('<span>Ops! Algo deu errado.</span><p>Erro no envio do formulário.</p>');
                 console.error(error);
             }
         });

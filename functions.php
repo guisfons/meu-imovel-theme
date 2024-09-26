@@ -306,16 +306,51 @@ function fix_svg() {
 add_action( 'admin_head', 'fix_svg' );
 
 // Functions for form
+add_action('wp_ajax_submit_form', 'handle_form_submission');
+add_action('wp_ajax_nopriv_submit_form', 'handle_form_submission');
 
-function my_process_form() {
-    if (isset($_POST)) {
-        $response = array('success' => true, 'data' => $_POST);
-        wp_send_json($response);
+function handle_form_submission() {
+    if (!isset($_POST['name']) || !isset($_POST['email'])) {
+        wp_send_json_error('Required fields missing.');
+        wp_die();
+    }
+
+    $name = sanitize_text_field($_POST['name']);
+    $email = sanitize_email($_POST['email']);
+    $message = sanitize_textarea_field($_POST['message']);
+
+    // Prepare email headers
+    $to = 'guilhermesfonsecaa@gmail.com';
+    $subject = 'New Form Submission';
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    
+    $body = "Name: $name<br>Email: $email<br>Message: $message<br>";
+
+    // Handle file upload (if any)
+    if (!empty($_FILES['file']['name'])) {
+        $file = $_FILES['file'];
+
+        // Validate the file type and size (example: 2MB limit)
+        if ($file['size'] <= 2097152 && in_array($file['type'], array('image/jpeg', 'image/png', 'application/pdf'))) {
+            // Upload the file to WordPress upload directory
+            $uploaded_file = wp_handle_upload($file, array('test_form' => false));
+
+            if ($uploaded_file && !isset($uploaded_file['error'])) {
+                // Attach the uploaded file to the email
+                $attachment = $uploaded_file['file'];
+                wp_mail($to, $subject, $body, $headers, $attachment);
+                wp_send_json_success('Form submitted successfully with attachment.');
+            } else {
+                wp_send_json_error('Error uploading file.');
+            }
+        } else {
+            wp_send_json_error('Invalid file type or size.');
+        }
     } else {
-        wp_send_json_error('Nenhum dado enviado');
+        // Send email without attachment
+        wp_mail($to, $subject, $body, $headers);
+        wp_send_json_success('Form submitted successfully.');
     }
 
     wp_die();
 }
-add_action('wp_ajax_my_form', 'my_process_form');
-add_action('wp_ajax_nopriv_my_form', 'my_process_form');
