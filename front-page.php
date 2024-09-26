@@ -325,7 +325,7 @@ if (isset($_GET['tipo_de_locacao'])) {
                 </form>
             </div>
 
-            <div class="formulario__content formulario__content--form<?php echo ($tipo_locacao == 'fisica') ? 'formulario__content--active' : ''; ?>" data-categ="fisica">
+            <div class="formulario__content formulario__content--form <?php echo ($tipo_locacao == 'fisica') ? 'formulario__content--active' : ''; ?>" data-categ="fisica">
                 <span class="formulario__heading">Formulário Para Locação - Pessoa Física</span>
 
                 <form method="POST" enctype="multipart/form-data">
