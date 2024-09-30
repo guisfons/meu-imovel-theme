@@ -14,7 +14,6 @@ if (isset($_GET['tipo_de_locacao'])) {
             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/logo.svg" alt=""></figure>
             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/imovel.webp" alt=""></figure>
         </aside>
-        <!-- // (Condition)?(thing's to do if condition true):(thing's to do if condition false); -->
         <div class="formulario__container">
             <div class="formulario__content <?php echo ($tipo_locacao == '') ? 'formulario__content--active' : ''; ?> formulario__content--1" data-index="1">
                 <article>
@@ -37,7 +36,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_residencial_juridica" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-residencial-juridica" name="finalidade_locacao"
                                     value="Residencial" checked hidden required>
                                 <span>Residencial</span>
                             </div>
@@ -45,7 +44,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_comercial" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-comercial" name="finalidade_locacao"
                                     value="Comercial" hidden required>
                                 <span>Comercial</span>
                             </div>
@@ -55,7 +54,7 @@ if (isset($_GET['tipo_de_locacao'])) {
                     <div class="formulario__fieldset">
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_locatario" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-locatario" name="finalidade_locacao"
                                     value="Locatário" hidden required>
                                 <span>Locatário</span>
                             </div>
@@ -63,7 +62,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_fiador" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-fiador" name="finalidade_locacao"
                                     value="Fiador" hidden required>
                                 <span>Fiador</span>
                             </div>
@@ -117,27 +116,27 @@ if (isset($_GET['tipo_de_locacao'])) {
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="comprovante-endereco">
+                        <label for="comprovante-endereco-juridico">
                             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Comprovante de Endereço <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
                                     Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="comprovante_endereco" id="comprovante-endereco"
+                            <input type="file" name="comprovante_endereco" id="comprovante-endereco-juridico"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="imposto-renda">
+                        <label for="imposto-renda-juridico">
                             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Imposto de Renda (Último Exercício) <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
                                     Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="imposto_renda" id="imposto-renda"
+                            <input type="file" name="imposto_renda" id="imposto-renda-juridico"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
@@ -232,7 +231,7 @@ if (isset($_GET['tipo_de_locacao'])) {
                                     precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens estarem
                                     legíveis.</i>
                             </span>
-                            <input type="file" name="doc_estado_civil_juridico" id="doc-estado-civil-juridico" accept=".png, .jpeg, .jpg, .pdf" hidden required />
+                            <input type="file" name="doc_estado_civil" id="doc-estado-civil-juridico" accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
                     <div class="formulario__fieldset">
@@ -334,7 +333,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_residencial_fisica" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-residencial-fisica" name="finalidade_locacao"
                                     value="Residencial" checked hidden required>
                                 <span>Residencial</span>
                             </div>
@@ -342,7 +341,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_comercial" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-comercial" name="finalidade_locacao"
                                     value="Comercial" hidden required>
                                 <span>Comercial</span>
                             </div>
@@ -352,7 +351,7 @@ if (isset($_GET['tipo_de_locacao'])) {
                     <div class="formulario__fieldset">
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_locatario" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-locatario" name="finalidade_locacao"
                                     value="Locatário" hidden required>
                                 <span>Locatário</span>
                             </div>
@@ -360,7 +359,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_fiador" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-fiador" name="finalidade_locacao"
                                     value="Fiador" hidden required>
                                 <span>Fiador</span>
                             </div>
@@ -396,25 +395,25 @@ if (isset($_GET['tipo_de_locacao'])) {
                                 required>
                         </label>
 
-                        <label for="celular">
+                        <label for="celular-fisico">
                             <span>Número de Celular <strong>*</strong></span>
-                            <input type="text" id="celular" name="celular" placeholder="Ex. (DDD) 9-9999 9999"
+                            <input type="text" id="celular-fisico" name="celular" placeholder="Ex. (DDD) 9-9999 9999"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="email">
+                        <label for="email-fisico">
                             <span>E-mail <strong>*</strong></span>
-                            <input type="email" id="email" name="email" placeholder="Ex. mariasilva@email.com"
+                            <input type="email" id="email-fisico" name="email" placeholder="Ex. mariasilva@email.com"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="nacionalidade">
+                        <label for="nacionalidade-fisico">
                             <span>Nacionalidade <strong>*</strong></span>
-                            <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex. Brasileiro"
+                            <input type="text" id="nacionalidade-fisico" name="nacionalidade" placeholder="Ex. Brasileiro"
                                 required>
                         </label>
                         <label for="profissao">
@@ -445,34 +444,34 @@ if (isset($_GET['tipo_de_locacao'])) {
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="renda-bruta">
+                        <label for="renda-bruta-fisica">
                             <span>Renda Bruta <strong>*</strong></span>
-                            <input type="text" id="renda-bruta" name="renda-bruta" placeholder="Ex. R$5.000,00"
+                            <input type="text" id="renda-bruta-fisica" name="renda_bruta" placeholder="Ex. R$5.000,00"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="rg">
+                        <label for="rg-fisica">
                             <span>RG/CNH <strong>*</strong></span>
-                            <input type="text" id="rg" name="rg" placeholder="Ex. 00.000.000-0" required>
+                            <input type="text" id="rg-fisica" name="rg" placeholder="Ex. 00.000.000-0" required>
                         </label>
 
-                        <label for="cpf">
+                        <label for="cpf-fisica">
                             <span>CPF <strong>*</strong></span>
-                            <input type="text" id="cpf" name="cpf" placeholder="Ex. 000.000.000-00" required>
+                            <input type="text" id="cpf-fisica" name="cpf" placeholder="Ex. 000.000.000-00" required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="doc-rg">
+                        <label for="doc-rg-fisica">
                             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar RG ou CNH <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
                                     estarem legíveis.</i>
                             </span>
-                            <input type="file" name="doc_rg" id="doc-rg" accept=".png, .jpeg, .jpg, .pdf" hidden
+                            <input type="file" name="doc_rg" id="doc-rg-fisica" accept=".png, .jpeg, .jpg, .pdf" hidden
                                 required />
                         </label>
                         <label for="doc-comprovante-residencia-fisico">
@@ -482,16 +481,16 @@ if (isset($_GET['tipo_de_locacao'])) {
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
                                     estarem legíveis.</i>
                             </span>
-                            <input type="file" name="doc_comprovante_residencia_fisico" id="doc-comprovante-residencia-fisico"
+                            <input type="file" name="doc_comprovante_residencia" id="doc-comprovante-residencia-fisico"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
 
                     <!-- Informações adicionais -->
                     <div class="formulario__fieldset">
-                        <label for="estado-civil">
+                        <label for="estado-civil-fisico">
                             <span>Estado Civil <strong>*</strong></span>
-                            <input type="text" id="estado-civil" name="estado_civil" placeholder="Ex. João Souza"
+                            <input type="text" id="estado-civil-fisico" name="estado_civil" placeholder="Ex. João Souza"
                                 required>
                         </label>
 
@@ -503,14 +502,14 @@ if (isset($_GET['tipo_de_locacao'])) {
                                     precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens estarem
                                     legíveis.</i>
                             </span>
-                            <input type="file" name="doc_estado_civil_fisico" id="doc-estado-civil-fisico"
+                            <input type="file" name="doc_estado_civil" id="doc-estado-civil-fisico"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
                     <div class="formulario__fieldset">
-                        <label for="nome-conjuge">
+                        <label for="nome-conjuge-fisico">
                             <span>Nome Cônjuge</span>
-                            <input type="text" id="nome-conjuge" name="nome_conjuge" placeholder="Ex. João Souza"
+                            <input type="text" id="nome-conjuge-fisico" name="nome_conjuge" placeholder="Ex. João Souza"
                                 required>
                         </label>
                         <label for="cpf-conjuge">
@@ -521,27 +520,27 @@ if (isset($_GET['tipo_de_locacao'])) {
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="celular">
+                        <label for="celular-conjuge">
                             <span>Número de Celular <strong>*</strong></span>
-                            <input type="text" id="celular" name="celular" placeholder="Ex. (DDD) 9-9999 9999"
+                            <input type="text" id="celular-conjuge" name="celular_conjuge" placeholder="Ex. (DDD) 9-9999 9999"
                                 required>
                         </label>
-                        <label for="email">
+                        <label for="email-conjuge">
                             <span>E-mail <strong>*</strong></span>
-                            <input type="email" id="email" name="email" placeholder="Ex. mariasilva@email.com"
+                            <input type="email" id="email-conjuge" name="email_conjuge" placeholder="Ex. mariasilva@email.com"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="nacionalidade">
+                        <label for="nacionalidade-fisico-conjuge">
                             <span>Nacionalidade <strong>*</strong></span>
-                            <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex. Brasileiro"
+                            <input type="text" id="nacionalidade-fisico-conjuge" name="nacionalidade_conjuge" placeholder="Ex. Brasileiro"
                                 required>
                         </label>
-                        <label for="profissao">
+                        <label for="profissao-fisico-conjuge">
                             <span>Profissão <strong>*</strong></span>
-                            <input type="text" id="profissao" name="profissao" placeholder="Ex. Cozinheiro"
+                            <input type="text" id="profissao-fisico-conjuge" name="profissao_conjuge" placeholder="Ex. Cozinheiro"
                                 required>
                         </label>
                     </div>
@@ -553,13 +552,13 @@ if (isset($_GET['tipo_de_locacao'])) {
                             <span>Morador 1 <strong>*</strong></span>
                             <label for="morador-rg1">
                                 <span>RG/CNH <strong>*</strong></span>
-                                <input type="text" id="morador-rg1" name="morador-rg1"
+                                <input type="text" id="morador-rg1" name="morador_rg1"
                                     placeholder="Ex. 00.000.000-0" required>
                             </label>
 
                             <label for="morador-cpf1">
                                 <span>CPF <strong>*</strong></span>
-                                <input type="text" id="morador-cpf1" name="morador-cpf1"
+                                <input type="text" id="morador-cpf1" name="morador_cpf1"
                                     placeholder="Ex. 000.000.000-00" required>
                             </label>
                         </div>
@@ -571,7 +570,7 @@ if (isset($_GET['tipo_de_locacao'])) {
                                     <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
                                         Atente-se das imagens estarem legíveis.</i>
                                 </span>
-                                <input type="file" name="doc-morador-1" id="doc-morador-1"
+                                <input type="file" name="doc_morador_1" id="doc-morador-1"
                                     accept=".png, .jpeg, .jpg, .pdf" hidden />
                             </label>
                         </div>
@@ -580,13 +579,13 @@ if (isset($_GET['tipo_de_locacao'])) {
                             <span>Morador 2 <strong>*</strong></span>
                             <label for="morador-rg2">
                                 <span>RG/CNH <strong>*</strong></span>
-                                <input type="text" id="morador-rg2" name="morador-rg2"
+                                <input type="text" id="morador-rg2" name="morador_rg2"
                                     placeholder="Ex. 00.000.000-0" required>
                             </label>
 
                             <label for="morador-cpf2">
                                 <span>CPF <strong>*</strong></span>
-                                <input type="text" id="morador-cpf2" name="morador-cpf2"
+                                <input type="text" id="morador-cpf2" name="morador_cpf2"
                                     placeholder="Ex. 000.000.000-00" required>
                             </label>
                         </div>
@@ -599,7 +598,7 @@ if (isset($_GET['tipo_de_locacao'])) {
                                     <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
                                         Atente-se das imagens estarem legíveis.</i>
                                 </span>
-                                <input type="file" name="doc-morador-2" id="doc-morador-2"
+                                <input type="file" name="doc_morador_2" id="doc-morador-2"
                                     accept=".png, .jpeg, .jpg, .pdf" hidden />
                             </label>
                         </div>
@@ -620,15 +619,15 @@ if (isset($_GET['tipo_de_locacao'])) {
                                     O Documento precisa
                                     estar no formato PNG, JPEG ou PDF. Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="comprovante-renda" id="comprovante-renda"
+                            <input type="file" name="comprovante_renda" id="comprovante-renda"
                                 accept=".png, .jpeg, .jpg, .pdf" multiple hidden required />
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="valor-aluguel">
+                        <label for="valor-aluguel-fisico">
                             <span>Você paga aluguel? Se sim, qual o valor?</span>
-                            <input type="text" id="valor-aluguel" name="valor_aluguel" placeholder="Ex. R$5.000,00">
+                            <input type="text" id="valor-aluguel-fisico" name="valor_aluguel" placeholder="Ex. R$5.000,00">
                         </label>
                     </div>
 
@@ -685,7 +684,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_residencial_fiador" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-residencial-fiador" name="finalidade_locacao"
                                     value="Residencial" checked hidden required>
                                 <span>Residencial</span>
                             </div>
@@ -711,7 +710,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="finalidade_locacao_fiador" name="finalidade_locacao"
+                                <input type="radio" id="finalidade-locacao-fiador" name="finalidade_locacao"
                                     value="Fiador" hidden required>
                                 <span>Fiador</span>
                             </div>
@@ -773,17 +772,17 @@ if (isset($_GET['tipo_de_locacao'])) {
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="email">
+                        <label for="email-fiador">
                             <span>E-mail <strong>*</strong></span>
-                            <input type="email" id="email" name="email" placeholder="Ex. mariasilva@email.com"
+                            <input type="email" id="email-fiador" name="email" placeholder="Ex. mariasilva@email.com"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="nacionalidade">
+                        <label for="nacionalidade-fiador">
                             <span>Nacionalidade <strong>*</strong></span>
-                            <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex. Brasileiro"
+                            <input type="text" id="nacionalidade-fiador" name="nacionalidade" placeholder="Ex. Brasileiro"
                                 required>
                         </label>
                         <label for="profissao">
@@ -798,7 +797,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="atuacao_clt" name="atuacao" value="CLT" checked hidden
+                                <input type="radio" id="atuacao-clt" name="atuacao" value="CLT" checked hidden
                                     required>
                                 <span>CLT</span>
                             </div>
@@ -806,7 +805,7 @@ if (isset($_GET['tipo_de_locacao'])) {
 
                         <label>
                             <div class="formulario__radio">
-                                <input type="radio" id="atuacao_autonomo" name="atuacao" value="Autonomo" hidden
+                                <input type="radio" id="atuacao-autonomo" name="atuacao" value="Autonomo" hidden
                                     required>
                                 <span>Autônomo(a)</span>
                             </div>
@@ -814,34 +813,34 @@ if (isset($_GET['tipo_de_locacao'])) {
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="renda-bruta">
+                        <label for="renda-bruta-fiador">
                             <span>Renda Bruta <strong>*</strong></span>
-                            <input type="text" id="renda-bruta" name="renda-bruta" placeholder="Ex. R$5.000,00"
+                            <input type="text" id="renda-bruta-fiador" name="renda_bruta" placeholder="Ex. R$5.000,00"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="rg">
+                        <label for="rg-fiador">
                             <span>RG/CNH <strong>*</strong></span>
-                            <input type="text" id="rg" name="rg" placeholder="Ex. 00.000.000-0" required>
+                            <input type="text" id="rg-fiador" name="rg" placeholder="Ex. 00.000.000-0" required>
                         </label>
 
-                        <label for="cpf">
+                        <label for="cpf-fiador">
                             <span>CPF <strong>*</strong></span>
-                            <input type="text" id="cpf" name="cpf" placeholder="Ex. 000.000.000-00" required>
+                            <input type="text" id="cpf-fiador" name="cpf" placeholder="Ex. 000.000.000-00" required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="doc-rg">
+                        <label for="doc-rg-fiador">
                             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar RG ou CNH <strong>*</strong>
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
                                     estarem legíveis.</i>
                             </span>
-                            <input type="file" name="doc_rg" id="doc-rg" accept=".png, .jpeg, .jpg, .pdf" hidden
+                            <input type="file" name="doc_rg" id="doc-rg-fiador" accept=".png, .jpeg, .jpg, .pdf" hidden
                                 required />
                         </label>
                         <label for="doc-comprovante-residencia-fiador">
@@ -851,16 +850,16 @@ if (isset($_GET['tipo_de_locacao'])) {
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
                                     estarem legíveis.</i>
                             </span>
-                            <input type="file" name="doc_comprovante_residencia_fiador" id="doc-comprovante-residencia-fiador"
+                            <input type="file" name="doc_comprovante_residencia" id="doc-comprovante-residencia-fiador"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
 
                     <!-- Informações adicionais -->
                     <div class="formulario__fieldset">
-                        <label for="estado-civil">
+                        <label for="estado-civil-fiador">
                             <span>Estado Civil <strong>*</strong></span>
-                            <input type="text" id="estado-civil" name="estado_civil" placeholder="Ex. João Souza"
+                            <input type="text" id="estado-civil-fiador" name="estado_civil" placeholder="Ex. João Souza"
                                 required>
                         </label>
 
@@ -872,13 +871,13 @@ if (isset($_GET['tipo_de_locacao'])) {
                                     precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens estarem
                                     legíveis.</i>
                             </span>
-                            <input type="file" name="doc_estado_civil_fiador" id="doc-estado-civil-fiador" accept=".png, .jpeg, .jpg, .pdf" hidden required />
+                            <input type="file" name="doc_estado_civil" id="doc-estado-civil-fiador" accept=".png, .jpeg, .jpg, .pdf" hidden required />
                         </label>
                     </div>
                     <div class="formulario__fieldset">
-                        <label for="nome-conjuge">
+                        <label for="nome-conjuge-fiador">
                             <span>Nome Cônjuge</span>
-                            <input type="text" id="nome-conjuge" name="nome_conjuge" placeholder="Ex. João Souza"
+                            <input type="text" id="nome-conjuge-fiador" name="nome_conjuge" placeholder="Ex. João Souza"
                                 required>
                         </label>
                         <label for="cpf-conjuge">
@@ -889,27 +888,27 @@ if (isset($_GET['tipo_de_locacao'])) {
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="celular">
+                        <label for="celular-fiador">
                             <span>Número de Celular <strong>*</strong></span>
-                            <input type="text" id="celular" name="celular" placeholder="Ex. (DDD) 9-9999 9999"
+                            <input type="text" id="celular-fiador" name="celular_conjuge" placeholder="Ex. (DDD) 9-9999 9999"
                                 required>
                         </label>
-                        <label for="email">
+                        <label for="email-conjuge">
                             <span>E-mail <strong>*</strong></span>
-                            <input type="email" id="email" name="email" placeholder="Ex. mariasilva@email.com"
+                            <input type="email" id="email-conjuge" name="email_conjuge" placeholder="Ex. mariasilva@email.com"
                                 required>
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="nacionalidade">
+                        <label for="nacionalidade-conjuge">
                             <span>Nacionalidade <strong>*</strong></span>
-                            <input type="text" id="nacionalidade" name="nacionalidade" placeholder="Ex. Brasileiro"
+                            <input type="text" id="nacionalidade-conjuge" name="nacionalidade_conjuge" placeholder="Ex. Brasileiro"
                                 required>
                         </label>
-                        <label for="profissao">
+                        <label for="profissao-conjuge">
                             <span>Profissão <strong>*</strong></span>
-                            <input type="text" id="profissao" name="profissao" placeholder="Ex. Cozinheiro"
+                            <input type="text" id="profissao-conjuge" name="profissao_conjuge" placeholder="Ex. Cozinheiro"
                                 required>
                         </label>
                     </div>
@@ -932,55 +931,55 @@ if (isset($_GET['tipo_de_locacao'])) {
                     <div class="formulario__moradores">
                         <div class="formulario__fieldset">
                             <span>Morador 1 <strong>*</strong></span>
-                            <label for="morador-rg1">
+                            <label for="morador-rg1-fiador">
                                 <span>RG/CNH <strong>*</strong></span>
-                                <input type="text" id="morador-rg1" name="morador-rg1"
+                                <input type="text" id="morador-rg1-fiador" name="morador_rg1"
                                     placeholder="Ex. 00.000.000-0" required>
                             </label>
 
-                            <label for="morador-cpf1">
+                            <label for="morador-cpf1-fiador">
                                 <span>CPF <strong>*</strong></span>
-                                <input type="text" id="morador-cpf1" name="morador-cpf1"
+                                <input type="text" id="morador-cpf1-fiador" name="morador_cpf1"
                                     placeholder="Ex. 000.000.000-00" required>
                             </label>
                         </div>
                         <div class="formulario__fieldset">
-                            <label for="doc-morador-1">
+                            <label for="doc-morador-1-fiador">
                                 <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                                 <span>
                                     Anexar Documento Caso Necessário
                                     <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
                                         Atente-se das imagens estarem legíveis.</i>
                                 </span>
-                                <input type="file" name="doc-morador-1" id="doc-morador-1"
+                                <input type="file" name="doc_morador_1" id="doc-morador-1"
                                     accept=".png, .jpeg, .jpg, .pdf" hidden />
                             </label>
                         </div>
 
                         <div class="formulario__fieldset">
                             <span>Morador 2 <strong>*</strong></span>
-                            <label for="morador-rg2">
+                            <label for="morador-rg2-fiador">
                                 <span>RG/CNH <strong>*</strong></span>
-                                <input type="text" id="morador-rg2" name="morador-rg2"
+                                <input type="text" id="morador-rg2-fiador" name="morador_rg2"
                                     placeholder="Ex. 00.000.000-0" required>
                             </label>
 
-                            <label for="morador-cpf2">
+                            <label for="morador-cpf2-fiador">
                                 <span>CPF <strong>*</strong></span>
-                                <input type="text" id="morador-cpf2" name="morador-cpf2"
+                                <input type="text" id="morador-cpf2-fiador" name="morador_cpf2"
                                     placeholder="Ex. 000.000.000-00" required>
                             </label>
                         </div>
 
                         <div class="formulario__fieldset">
-                            <label for="doc-morador-2">
+                            <label for="doc-morador-2-fiador">
                                 <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                                 <span>
                                     Anexar Documento Caso Necessário
                                     <i>O Documento precisa estar no formato PNG, JPEG ou PDF.
                                         Atente-se das imagens estarem legíveis.</i>
                                 </span>
-                                <input type="file" name="doc-morador-2" id="doc-morador-2"
+                                <input type="file" name="doc_morador_2" id="doc-morador-2-fiador"
                                     accept=".png, .jpeg, .jpg, .pdf" hidden />
                             </label>
                         </div>
@@ -992,7 +991,7 @@ if (isset($_GET['tipo_de_locacao'])) {
                     <hr />
 
                     <div class="formulario__fieldset">
-                        <label for="comprovante-renda">
+                        <label for="comprovante-renda-fiador">
                             <figure><img src="<?php echo get_stylesheet_directory_uri(); ?>/assets/img/anexo.svg" alt="Anexar Documento"></figure>
                             <span>
                                 Anexar Comprovante de Renda 3 últimos extratos <br> bancários ou holerite <strong>
@@ -1001,22 +1000,22 @@ if (isset($_GET['tipo_de_locacao'])) {
                                     O Documento precisa
                                     estar no formato PNG, JPEG ou PDF. Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="comprovante-renda" id="comprovante-renda"
+                            <input type="file" name="comprovante_renda" id="comprovante-renda-fiador"
                                 accept=".png, .jpeg, .jpg, .pdf" multiple hidden required />
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="valor-aluguel">
+                        <label for="valor-aluguel-fiador">
                             <span>Você paga aluguel? Se sim, qual o valor?</span>
-                            <input type="text" id="valor-aluguel" name="valor_aluguel" placeholder="Ex. R$5.000,00">
+                            <input type="text" id="valor-aluguel-fiador" name="valor_aluguel" placeholder="Ex. R$5.000,00">
                         </label>
                     </div>
 
                     <div class="formulario__fieldset">
-                        <label for="locador">
+                        <label for="locador-fiador">
                             <span>Locador <strong>*</strong></span>
-                            <input type="text" id="locador" name="locador" placeholder="Ex. Nome ou Empresa"
+                            <input type="text" id="locador-fiador" name="locador" placeholder="Ex. Nome ou Empresa"
                                 required>
                         </label>
                         <label for="telefone-locador-fiador">

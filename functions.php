@@ -331,7 +331,7 @@ function handle_form_locacao_pessoa_juridica() {
     
     // Informações do cônjuge
     $estado_civil = sanitize_text_field($_POST['estado_civil']);
-    $doc_estado_civil_juridico = $_FILES['doc_estado_civil_juridico'];
+    $doc_estado_civil = $_FILES['doc_estado_civil'];
     $nome_conjuge = sanitize_text_field($_POST['nome_conjuge']);
     $cpf_conjuge = sanitize_text_field($_POST['cpf_conjuge']);
     $celular = sanitize_text_field($_POST['celular']);
@@ -404,7 +404,7 @@ function handle_form_locacao_pessoa_juridica() {
     $errors[] = add_attachment($contrato_social, $attachments);
     $errors[] = add_attachment($doc_socio1, $attachments);
     $errors[] = add_attachment($doc_socio2, $attachments);
-    $errors[] = add_attachment($doc_estado_civil_juridico, $attachments);
+    $errors[] = add_attachment($doc_estado_civil, $attachments);
 
     // Verificando se houve erros
     foreach ($errors as $error) {
@@ -417,6 +417,388 @@ function handle_form_locacao_pessoa_juridica() {
     send_email_with_attachment($to_string, $subject, $body, $headers, $attachments);
     wp_send_json_success('Formulário enviado com sucesso.');
 
+    wp_die();
+}
+
+add_action('wp_ajax_submit_form_pessoa_fisica', 'handle_form_locacao_pessoa_fisica');
+add_action('wp_ajax_nopriv_submit_form_pessoa_fisica', 'handle_form_locacao_pessoa_fisica');
+function handle_form_locacao_pessoa_fisica() {
+    $finalidade_locacao = sanitize_text_field($_POST['finalidade_locacao']);
+    $endereco_imovel = sanitize_text_field($_POST['endereco_imovel']);
+    $valor_locacao = sanitize_text_field($_POST['valor_locacao']);
+    $garantia_escolhida = sanitize_text_field($_POST['garantia_escolhida']);
+
+    $nome_completo = sanitize_text_field($_POST['nome_completo']);
+    $celular = sanitize_text_field($_POST['celular']);
+    $email = sanitize_email($_POST['email']);
+    $nacionalidade = sanitize_text_field($_POST['nacionalidade']);
+    $profissao = sanitize_text_field($_POST['profissao']);
+    $atuacao = sanitize_text_field($_POST['atuacao']);
+    $renda_bruta = sanitize_text_field($_POST['renda_bruta']);
+    $rg = sanitize_text_field($_POST['rg']);
+    $cpf = sanitize_text_field($_POST['cpf']);
+    $doc_rg = $_FILES['doc_rg'];
+    $doc_comprovante_residencia = $_FILES['doc_comprovante_residencia_fisico'];
+    $estado_civil = sanitize_text_field($_POST['estado_civil']);
+    $doc_estado_civil = $_FILES['doc_estado_civil'];
+
+    // Informações cônjuge
+    $nome_conjuge = sanitize_text_field($_POST['nome_conjuge']);
+    $cpf_conjuge = sanitize_text_field($_POST['cpf_conjuge']);
+    $celular_conjuge = sanitize_text_field($_POST['celular_conjuge']);
+    $email_conjuge = sanitize_email($_POST['email_conjuge']);
+    $nacionalidade_conjuge = sanitize_text_field($_POST['nacionalidade_conjuge']);
+    $profissao_conjuge = sanitize_text_field($_POST['profissao_conjuge']);
+
+    // Outros campos
+    $comprovante_renda = $_FILES['comprovante_renda'];
+    $valor_aluguel = sanitize_text_field($_POST['valor_aluguel']);
+    $locador = sanitize_text_field($_POST['locador']);
+    $motivo_mudanca = sanitize_text_field($_POST['motivo_mudanca']);
+    
+    $to = array(
+        'guilhermesfonsecaa@gmail.com',
+        'analise@meuimovel.imb.br',
+        'contato@meuimovel.imb.br'
+    );
+
+    $to_string = implode(',', $to);
+
+    $subject = 'Formulário Para Locação - Pessoa Física';
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    
+    // Montando o corpo do e-mail
+    $body = "<strong>Finalidade da Locação:</strong> $finalidade_locacao<br>
+            <strong>Endereço do Imóvel:</strong> $endereco_imovel<br>
+            <strong>Valor da Locação:</strong> $valor_locacao<br>
+            <strong>Garantia Escolhida:</strong> $garantia_escolhida<br>
+            <strong>Nome Completo:</strong> $nome_completo<br>
+            <strong>Celular:</strong> $celular<br>
+            <strong>E-mail:</strong> $email<br>
+            <strong>Nacionalidade:</strong> $nacionalidade<br>
+            <strong>Profissão:</strong> $profissao<br>
+            <strong>Área de Atuação:</strong> $atuacao<br>
+            <strong>Renda Bruta:</strong> $renda_bruta<br>
+            <strong>RG:</strong> $rg<br>
+            <strong>CPF:</strong> $cpf<br>
+            <strong>Estado Civil:</strong> $estado_civil<br>
+            <strong>Nome do Cônjuge:</strong> $nome_conjuge<br>
+            <strong>CPF do Cônjuge:</strong> $cpf_conjuge<br>
+            <strong>Celular do Cônjuge:</strong> $celular_conjuge<br>
+            <strong>E-mail do Cônjuge:</strong> $email_conjuge<br>
+            <strong>Nacionalidade do Cônjuge:</strong> $nacionalidade_conjuge<br>
+            <strong>Profissão do Cônjuge:</strong> $profissao_conjuge<br>";
+
+    // Processar dinamicamente os moradores
+    $moradores = [];
+    for ($i = 1; isset($_POST["morador_rg_$i"]); $i++) {
+        $morador_rg = sanitize_text_field($_POST["morador_rg_$i"]);
+        $morador_cpf = sanitize_text_field($_POST["morador_cpf_$i"]);
+        $doc_morador = isset($_FILES["doc_morador_$i"]) ? $_FILES["doc_morador_$i"] : null;
+
+        // Adiciona o morador ao array
+        $moradores[] = [
+            'rg' => $morador_rg,
+            'cpf' => $morador_cpf,
+            'doc' => $doc_morador
+        ];
+
+        // Adiciona as informações do morador ao corpo do e-mail
+        $body .= "<strong>RG do Morador $i:</strong> $morador_rg<br>
+                  <strong>CPF do Morador $i:</strong> $morador_cpf<br>";
+    }
+
+    // Outros campos
+    $body .= "<strong>Comprovante de Renda:</strong> Comprovante enviado.<br>
+              <strong>Valor do Aluguel:</strong> $valor_aluguel<br>
+              <strong>Locador:</strong> $locador<br>
+              <strong>Motivo da Mudança:</strong> $motivo_mudanca<br>";
+    
+    // Função para fazer upload e adicionar ao array de anexos
+    function add_attachment($file, &$attachments) {
+        if (!empty($file['name'])) {
+            $uploaded_file = wp_handle_upload($file, array('test_form' => false));
+            if ($uploaded_file && !isset($uploaded_file['error'])) {
+                $attachments[] = $uploaded_file['file'];
+            } else {
+                return "Erro ao fazer upload do arquivo: " . $file['name'];
+            }
+        }
+        return null; // Se tudo ocorreu bem
+    }
+
+    // Array de anexos
+    $attachments = array();
+
+    // Adicionando todos os documentos ao array de anexos
+    $errors = array();
+    $errors[] = add_attachment($doc_rg, $attachments);
+    $errors[] = add_attachment($doc_comprovante_residencia, $attachments);
+    $errors[] = add_attachment($doc_estado_civil, $attachments);
+    $errors[] = add_attachment($comprovante_renda, $attachments);
+
+    // Adicionar os documentos dos moradores
+    foreach ($moradores as $index => $morador) {
+        if ($morador['doc']) {
+            $errors[] = add_attachment($morador['doc'], $attachments);
+        }
+    }
+
+    // Verificando se houve algum erro
+    $errors = array_filter($errors); // Remove valores nulos
+    if (!empty($errors)) {
+        wp_send_json_error($errors);
+    }
+
+    // Enviar o email com os anexos (se houver)
+    send_email_with_attachment($to_string, $subject, $body, $headers, $attachments);
+
+    wp_send_json_success('Formulário enviado com sucesso.');
+    wp_die();
+}
+
+add_action('wp_ajax_submit_form_fiador', 'handle_form_locacao_fiador');
+add_action('wp_ajax_nopriv_submit_form_fiador', 'handle_form_locacao_fiador');
+function handle_form_locacao_fiador() {
+    $finalidade_locacao = sanitize_text_field($_POST['finalidade_locacao']);
+    $endereco_imovel = sanitize_text_field($_POST['endereco_imovel']);
+    $valor_locacao = sanitize_text_field($_POST['valor_locacao']);
+    $garantia_escolhida = sanitize_text_field($_POST['garantia_escolhida']);
+
+    $nome_completo = sanitize_text_field($_POST['nome_completo']);
+    $celular = sanitize_text_field($_POST['celular']);
+    $email = sanitize_email($_POST['email']);
+    $nacionalidade = sanitize_text_field($_POST['nacionalidade']);
+    $profissao = sanitize_text_field($_POST['profissao']);
+    $atuacao = sanitize_text_field($_POST['atuacao']);
+    $renda_bruta = sanitize_text_field($_POST['renda_bruta']);
+    $rg = sanitize_text_field($_POST['rg']);
+    $cpf = sanitize_text_field($_POST['cpf']);
+    $doc_rg = $_FILES['doc_rg'];
+    $doc_comprovante_residencia = $_FILES['doc_comprovante_residencia'];
+    $estado_civil = sanitize_text_field($_POST['estado_civil']);
+    $doc_estado_civil = $_FILES['doc_estado_civil'];
+
+    // Informações cônjuge
+    $nome_conjuge = sanitize_text_field($_POST['nome_conjuge']);
+    $cpf_conjuge = sanitize_text_field($_POST['cpf_conjuge']);
+    $celular_conjuge = sanitize_text_field($_POST['celular_conjuge']);
+    $email_conjuge = sanitize_email($_POST['email_conjuge']);
+    $nacionalidade_conjuge = sanitize_text_field($_POST['nacionalidade_conjuge']);
+    $profissao_conjuge = sanitize_text_field($_POST['profissao_conjuge']);
+
+    // Outros campos
+    $comprovante_renda = $_FILES['comprovante_renda'];
+    $valor_aluguel = sanitize_text_field($_POST['valor_aluguel']);
+    $locador = sanitize_text_field($_POST['locador']);
+    $motivo_mudanca = sanitize_text_field($_POST['motivo_mudanca']);
+    
+    $to = array(
+        'guilhermesfonsecaa@gmail.com',
+        'analise@meuimovel.imb.br',
+        'contato@meuimovel.imb.br'
+    );
+
+    $to_string = implode(',', $to);
+
+    $subject = 'Formulário Para Locação - Pessoa Física';
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    
+    // Montando o corpo do e-mail
+    $body = "<strong>Finalidade da Locação:</strong> $finalidade_locacao<br>
+            <strong>Endereço do Imóvel:</strong> $endereco_imovel<br>
+            <strong>Valor da Locação:</strong> $valor_locacao<br>
+            <strong>Garantia Escolhida:</strong> $garantia_escolhida<br>
+            <strong>Nome Completo:</strong> $nome_completo<br>
+            <strong>Celular:</strong> $celular<br>
+            <strong>E-mail:</strong> $email<br>
+            <strong>Nacionalidade:</strong> $nacionalidade<br>
+            <strong>Profissão:</strong> $profissao<br>
+            <strong>Área de Atuação:</strong> $atuacao<br>
+            <strong>Renda Bruta:</strong> $renda_bruta<br>
+            <strong>RG:</strong> $rg<br>
+            <strong>CPF:</strong> $cpf<br>
+            <strong>Estado Civil:</strong> $estado_civil<br>
+            <strong>Nome do Cônjuge:</strong> $nome_conjuge<br>
+            <strong>CPF do Cônjuge:</strong> $cpf_conjuge<br>
+            <strong>Celular do Cônjuge:</strong> $celular_conjuge<br>
+            <strong>E-mail do Cônjuge:</strong> $email_conjuge<br>
+            <strong>Nacionalidade do Cônjuge:</strong> $nacionalidade_conjuge<br>
+            <strong>Profissão do Cônjuge:</strong> $profissao_conjuge<br>";
+
+    // Processar dinamicamente os moradores
+    $moradores = [];
+    for ($i = 1; isset($_POST["morador_rg_$i"]); $i++) {
+        $morador_rg = sanitize_text_field($_POST["morador_rg_$i"]);
+        $morador_cpf = sanitize_text_field($_POST["morador_cpf_$i"]);
+        $doc_morador = isset($_FILES["doc_morador_$i"]) ? $_FILES["doc_morador_$i"] : null;
+
+        // Adiciona o morador ao array
+        $moradores[] = [
+            'rg' => $morador_rg,
+            'cpf' => $morador_cpf,
+            'doc' => $doc_morador
+        ];
+
+        // Adiciona as informações do morador ao corpo do e-mail
+        $body .= "<strong>RG do Morador $i:</strong> $morador_rg<br>
+                  <strong>CPF do Morador $i:</strong> $morador_cpf<br>";
+    }
+
+    // Outros campos
+    $body .= "<strong>Comprovante de Renda:</strong> Comprovante enviado.<br>
+              <strong>Valor do Aluguel:</strong> $valor_aluguel<br>
+              <strong>Locador:</strong> $locador<br>
+              <strong>Motivo da Mudança:</strong> $motivo_mudanca<br>";
+    
+    // Função para fazer upload e adicionar ao array de anexos
+    function add_attachment($file, &$attachments) {
+        if (!empty($file['name'])) {
+            $uploaded_file = wp_handle_upload($file, array('test_form' => false));
+            if ($uploaded_file && !isset($uploaded_file['error'])) {
+                $attachments[] = $uploaded_file['file'];
+            } else {
+                return "Erro ao fazer upload do arquivo: " . $file['name'];
+            }
+        }
+        return null; // Se tudo ocorreu bem
+    }
+
+    // Array de anexos
+    $attachments = array();
+
+    // Adicionando todos os documentos ao array de anexos
+    $errors = array();
+    $errors[] = add_attachment($doc_rg, $attachments);
+    $errors[] = add_attachment($doc_comprovante_residencia, $attachments);
+    $errors[] = add_attachment($doc_estado_civil, $attachments);
+    $errors[] = add_attachment($comprovante_renda, $attachments);
+
+    // Adicionar os documentos dos moradores
+    foreach ($moradores as $index => $morador) {
+        if ($morador['doc']) {
+            $errors[] = add_attachment($morador['doc'], $attachments);
+        }
+    }
+
+    // Verificando se houve algum erro
+    $errors = array_filter($errors); // Remove valores nulos
+    if (!empty($errors)) {
+        wp_send_json_error($errors);
+    }
+
+    // Enviar o email com os anexos (se houver)
+    send_email_with_attachment($to_string, $subject, $body, $headers, $attachments);
+
+    wp_send_json_success('Formulário enviado com sucesso.');
+    wp_die();
+}
+
+add_action('wp_ajax_submit_form_analise_credito', 'handle_form_analise_credito');
+add_action('wp_ajax_nopriv_submit_form_analise_credito', 'handle_form_analise_credito');
+function handle_form_analise_credito() {
+    $nome_completo = sanitize_text_field($_POST['nome_completo']);
+    $cpf = sanitize_text_field($_POST['cpf']);
+    $rg = sanitize_text_field($_POST['rg']);
+    $doc_rg = $_FILES['doc_rg'];
+    $orgao_emissor = sanitize_text_field($_POST['orgao_emissor']);
+    
+    $data_emissao = sanitize_text_field($_POST['data_emissao']);
+    $titulo_eleitor = sanitize_text_field($_POST['titulo_eleitor']);
+    $doc_titulo_eleitor = $_FILES['doc_titulo_eleitor'];
+
+    $nome_completo_mae = sanitize_text_field($_POST['nome_completo_mae']);
+    $estado_civil = sanitize_text_field($_POST['estado_civil']);
+    $doc_nascimento = $_FILES['doc_nascimento'];
+    $data_nascimento = sanitize_text_field($_POST['data_nascimento']);
+    $profissao = sanitize_text_field($_POST['profissao']);
+    $cargo = sanitize_text_field($_POST['cargo']);
+    $nome_empresa = sanitize_text_field($_POST['nome_empresa']);
+    $cnpj_empresa = sanitize_text_field($_POST['cnpj_empresa']);
+    $data_admissao = sanitize_text_field($_POST['data_admissao']);
+    $pis = sanitize_text_field($_POST['pis']);
+    $renda_bruta = sanitize_text_field($_POST['renda_bruta']);
+    $comprovacao_renda = sanitize_text_field($_POST['comprovacao_renda']);
+    $doc_comprovacao_renda = $_FILES['doc_comprovacao_renda'];
+    $endereco = sanitize_text_field($_POST['endereco']);
+    $comprovante_endereco_residencial = $_FILES['comprovante_endereco_residencial'];
+    $numero_celular = sanitize_text_field($_POST['numero_celular']);
+    $email = sanitize_email($_POST['email']);
+    
+    $to = array(
+        'guilhermesfonsecaa@gmail.com',
+        'analise@meuimovel.imb.br',
+        'contato@meuimovel.imb.br'
+    );
+
+    $to_string = implode(',', $to);
+
+    $subject = 'Formulário Para Locação - Pessoa Física';
+    $headers = array('Content-Type: text/html; charset=UTF-8');
+    
+    // Montando o corpo do e-mail
+    $body = "<strong>Nome Completo:</strong> $nome_completo<br>
+        <strong>CPF:</strong> $cpf<br>
+        <strong>RG:</strong> $rg<br>
+        <strong>Órgão Emissor:</strong> $orgao_emissor<br>
+        <strong>Data de Emissão:</strong> $data_emissao<br>
+        <strong>Título de Eleitor:</strong> $titulo_eleitor<br>
+        <strong>Nome Completo da Mãe:</strong> $nome_completo_mae<br>
+        <strong>Estado Civil:</strong> $estado_civil<br>
+        <strong>Data de Nascimento:</strong> $data_nascimento<br>
+        <strong>Profissão:</strong> $profissao<br>
+        <strong>Cargo:</strong> $cargo<br>
+        <strong>Nome da Empresa:</strong> $nome_empresa<br>
+        <strong>CNPJ da Empresa:</strong> $cnpj_empresa<br>
+        <strong>Data de Admissão:</strong> $data_admissao<br>
+        <strong>PIS:</strong> $pis<br>
+        <strong>Renda Bruta:</strong> $renda_bruta<br>
+        <strong>Comprovação de Renda:</strong> $comprovacao_renda<br>
+        <strong>Endereço Residencial:</strong> $endereco<br>
+        <strong>Número de Celular:</strong> $numero_celular<br>
+        <strong>Email:</strong> $email<br>
+
+        <strong>Documentos Anexados:</strong><br>
+        - RG: " . (!empty($doc_rg['name']) ? 'Anexado' : 'Não Anexado') . "<br>
+        - Título de Eleitor: " . (!empty($doc_titulo_eleitor['name']) ? 'Anexado' : 'Não Anexado') . "<br>
+        - Certidão de Nascimento: " . (!empty($doc_nascimento['name']) ? 'Anexado' : 'Não Anexado') . "<br>
+        - Comprovação de Renda: " . (!empty($doc_comprovacao_renda['name']) ? 'Anexado' : 'Não Anexado') . "<br>
+        - Comprovante de Endereço Residencial: " . (!empty($comprovante_endereco_residencial['name']) ? 'Anexado' : 'Não Anexado') . "<br>";
+    
+    // Função para fazer upload e adicionar ao array de anexos
+    function add_attachment($file, &$attachments) {
+        if (!empty($file['name'])) {
+            $uploaded_file = wp_handle_upload($file, array('test_form' => false));
+            if ($uploaded_file && !isset($uploaded_file['error'])) {
+                $attachments[] = $uploaded_file['file'];
+            } else {
+                return "Erro ao fazer upload do arquivo: " . $file['name'];
+            }
+        }
+        return null; // Se tudo ocorreu bem
+    }
+
+    // Array de anexos
+    $attachments = array();
+
+    // Adicionando todos os documentos ao array de anexos
+    $errors = array();
+    $errors[] = add_attachment($doc_rg, $attachments);
+    $errors[] = add_attachment($doc_titulo_eleitor, $attachments);
+    $errors[] = add_attachment($doc_nascimento, $attachments);
+    $errors[] = add_attachment($doc_comprovacao_renda, $attachments);
+    $errors[] = add_attachment($comprovante_endereco_residencial, $attachments);
+
+    // Verificando se houve algum erro
+    $errors = array_filter($errors); // Remove valores nulos
+    if (!empty($errors)) {
+        wp_send_json_error($errors);
+    }
+
+    // Enviar o email com os anexos (se houver)
+    send_email_with_attachment($to_string, $subject, $body, $headers, $attachments);
+
+    wp_send_json_success('Formulário enviado com sucesso.');
     wp_die();
 }
 

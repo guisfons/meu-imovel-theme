@@ -31,7 +31,7 @@ get_header();
                     <div class="formulario__fieldset">
                         <label for="nome-completo">
                             <span>Nome Completo <strong>*</strong></span>
-                            <input type="text" name="nome-completo" id="nome-completo" placeholder="Ex. Maria Silva"
+                            <input type="text" name="nome_completo" id="nome-completo" placeholder="Ex. Maria Silva"
                                 required />
                         </label>
                         <label for="cpf">
@@ -51,25 +51,25 @@ get_header();
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
                                     estarem legíveis.</i>
                             </span>
-                            <input type="file" name="doc-rg" id="doc-rg" accept=".png, .jpeg, .jpg, .pdf" hidden />
+                            <input type="file" name="doc_rg" id="doc-rg" accept=".png, .jpeg, .jpg, .pdf" hidden />
                         </label>
                     </div>
                     <div class="formulario__fieldset">
                         <label for="orgao-emissor">
                             <span>Órgão Emissor do RG <strong>*</strong></span>
-                            <input type="text" name="orgao-emissor" id="orgao-emissor" placeholder="Ex. SSP"
+                            <input type="text" name="orgao_emissor" id="orgao-emissor" placeholder="Ex. SSP"
                                 required maxlength="3" />
                         </label>
                         <label for="data-emissao">
                             <span>Data de Expedição do RG <strong>*</strong></span>
-                            <input type="tel" name="data-emissao" id="data-emissao" placeholder="DD/MM/AAAA"
+                            <input type="tel" name="data_emissao" id="data-emissao" placeholder="DD/MM/AAAA"
                                 required />
                         </label>
                     </div>
                     <div class="formulario__fieldset">
                         <label for="titulo-eleitor">
                             <span>Título de Eleitor <strong>*</strong></span>
-                            <input type="tel" name="titulo-eleitor" id="titulo-eleitor"
+                            <input type="tel" name="titulo_eleitor" id="titulo-eleitor"
                                 placeholder="Ex. 0000 0000 0000" required />
                         </label>
                         <label for="doc-titulo-eleitor">
@@ -79,19 +79,19 @@ get_header();
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
                                     estarem legíveis.</i>
                             </span>
-                            <input type="file" name="doc-titulo-eleitor" id="doc-titulo-eleitor"
+                            <input type="file" name="doc_titulo_eleitor" id="doc-titulo-eleitor"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden />
                         </label>
                     </div>
                     <div class="formulario__fieldset">
                         <label for="nome-completo-mae">
                             <span>Nome Completo da Mãe <strong>*</strong></span>
-                            <input type="text" name="nome-completo-mae" id="nome-completo-mae"
+                            <input type="text" name="nome_completo_mae" id="nome-completo-mae"
                                 placeholder="Ex. Maria Margarida da Silva" required />
                         </label>
                         <label for="estado-civil">
                             <span>Estado Civil <strong>*</strong></span>
-                            <input type="text" name="estado-civil" id="estado-civil"
+                            <input type="text" name="estado_civil" id="estado-civil"
                                 placeholder="Ex. Solteiro, Casado etc." required />
                         </label>
                     </div>
@@ -103,12 +103,12 @@ get_header();
                                 <i>Certidão de Casamento ou Certidão de Nascimento. O Documento precisa estar no
                                     formato PNG, JPEG ou PDF. Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="doc-nascimento" id="doc-nascimento"
+                            <input type="file" name="doc_nascimento" id="doc-nascimento"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden />
                         </label>
                         <label for="data-nascimento">
                             <span>Data de Nascimento <strong>*</strong></span>
-                            <input type="tel" name="data-nascimento" id="data-nascimento" placeholder="DD/MM/AAAA"
+                            <input type="tel" name="data_nascimento" id="data-nascimento" placeholder="DD/MM/AAAA"
                                 required />
                         </label>
                     </div>
@@ -126,19 +126,19 @@ get_header();
                     <div class="formulario__fieldset">
                         <label for="nome-empresa">
                             <span>Nome da Empresa em que Trabalha</span>
-                            <input type="text" name="nome-empresa" id="nome-empresa"
+                            <input type="text" name="nome_empresa" id="nome-empresa"
                                 placeholder="Ex. Professor, Médico etc." />
                         </label>
                         <label for="cnpj-empresa">
                             <span>CNPJ da Empresa</span>
-                            <input type="tel" name="cnpj-empresa" id="cnpj-empresa"
+                            <input type="tel" name="cnpj_empresa" id="cnpj-empresa"
                                 placeholder="Ex. 99.999.999/9999-99" />
                         </label>
                     </div>
                     <div class="formulario__fieldset">
                         <label for="data-admissao">
                             <span>Data de Admissão <strong>*</strong></span>
-                            <input type="tel" name="data-admissao" id="data-admissao" placeholder="DD/MM/AAAA"
+                            <input type="tel" name="data_admissao" id="data-admissao" placeholder="DD/MM/AAAA"
                                 required />
                         </label>
                         <label for="pis">
@@ -149,7 +149,7 @@ get_header();
                     <div class="formulario__fieldset">
                         <label for="renda-bruta">
                             <span>Renda Bruta <strong>*</strong></span>
-                            <input type="text" name="renda-bruta" id="renda-bruta" placeholder="Ex. R$5.000,00"
+                            <input type="text" name="renda_bruta" id="renda-bruta" placeholder="Ex. R$5.000,00"
                                 required />
                         </label>
                     </div>
@@ -159,14 +159,14 @@ get_header();
 
                         <label for="comprovacao-renda-holerite">
                             <div class="formulario__radio">
-                                <input type="radio" id="comprovacao-renda-holerite" name="comprovacao-renda"
+                                <input type="radio" id="comprovacao-renda-holerite" name="comprovacao_renda"
                                     value="Holerite" checked hidden required>
                                 <span>Holerite</span>
                             </div>
                         </label>
                         <label for="comprovacao-renda-ir">
                             <div class="formulario__radio">
-                                <input type="radio" id="comprovacao-renda-ir" name="comprovacao-renda" value="ir"
+                                <input type="radio" id="comprovacao-renda-ir" name="comprovacao_renda" value="ir"
                                     hidden required>
                                 <span>Declaração de IR</span>
                             </div>
@@ -180,7 +180,7 @@ get_header();
                                 <i>3 Últimos holerites ou IR e Recibo. O Documento precisa estar no formato PNG,
                                     JPEG ou PDF. Atente-se das imagens estarem legíveis.</i>
                             </span>
-                            <input type="file" name="doc-comprovacao-renda" id="doc-comprovacao-renda"
+                            <input type="file" name="doc_comprovacao_renda" id="doc-comprovacao-renda"
                                 accept=".png, .jpeg, .jpg, .pdf" hidden />
                         </label>
                         <label for="endereco">
@@ -197,7 +197,7 @@ get_header();
                                 <i>O Documento precisa estar no formato PNG, JPEG ou PDF. Atente-se das imagens
                                     estarem legíveis.</i>
                             </span>
-                            <input type="file" name="comprovante-endereco-residencial"
+                            <input type="file" name="comprovante_endereco_residencial"
                                 id="comprovante-endereco-residencial" accept=".png, .jpeg, .jpg, .pdf" hidden />
                         </label>
                     </div>
@@ -205,7 +205,7 @@ get_header();
                     <div class="formulario__fieldset">
                         <label for="numero-celular">
                             <span>Número do Celular <strong>*</strong></span>
-                            <input type="tel" name="numero-celular" id="numero-celular"
+                            <input type="tel" name="numero_celular" id="numero-celular"
                                 placeholder="Ex. (DDD) 9-9999 9999" required />
                         </label>
                         <label for="email">

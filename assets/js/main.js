@@ -90,12 +90,12 @@ function maisMoradores() {
                 <span>Morador ${novoMorador} <strong>*</strong></span>
                 <label for="morador-rg${novoMorador}">
                     <span>RG/CNH <strong>*</strong></span>
-                    <input type="text" id="morador-rg${novoMorador}" name="morador-rg${novoMorador}" placeholder="Ex. 00.000.000-0" required>
+                    <input type="text" id="morador-rg${novoMorador}" name="morador_rg${novoMorador}" placeholder="Ex. 00.000.000-0" required>
                 </label>
 
                 <label for="morador-cpf${novoMorador}">
                     <span>CPF <strong>*</strong></span>
-                    <input type="text" id="morador-cpf${novoMorador}" name="morador-cpf${novoMorador}" placeholder="Ex. 000.000.000-00" required>
+                    <input type="text" id="morador-cpf${novoMorador}" name="morador_cpf${novoMorador}" placeholder="Ex. 000.000.000-00" required>
                 </label>
             </div>
 
@@ -107,7 +107,7 @@ function maisMoradores() {
                         <i>O Documento precisa estar no formato PNG, JPEG ou PDF. 
                             Atente-se das imagens estarem legíveis.</i>
                     </span>
-                    <input type="file" name="doc-morador-${novoMorador}" id="doc-morador-${novoMorador}"
+                    <input type="file" name="doc_morador_${novoMorador}" id="doc-morador-${novoMorador}"
                         accept=".png, .jpeg, .jpg, .pdf" hidden />
                 </label>
             </div>
