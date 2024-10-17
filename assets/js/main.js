@@ -43,7 +43,14 @@ function masks() {
     $('input[placeholder="Ex. 999.99999.99-9"]').mask('000.00000.00-0')
     $('input[placeholder="Ex. 99.999.999/9999-99"]').mask('00.000.000/0000-00')
     $('input[placeholder="Ex. (DDD) 9-9999 9999"]').mask('(00) 0-0000 0000')
-    $('input[placeholder="Ex. R$5.000,00"], input[placeholder="Ex. R$1000,00"]').mask('R$ 0.000,00')
+    $('input[placeholder="Ex. R$5.000,00"], input[placeholder="Ex. R$1000,00"]').mask('R$ 0.000,00', {
+        onComplete: function(val, e, field) {
+            const value = parseFloat(val.replace('R$', '').replace('.', '').replace(',', '.'))
+            if (value > 9999) {
+                field.val('R$ 9.999,00')
+            }
+        }
+    })
 }
 
 function fileInputs() {

@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'cliente/tema',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => NULL,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '25b486f32e51eefa8a207fa4304b7cac2e30ca48',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'cliente/tema' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => NULL,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '25b486f32e51eefa8a207fa4304b7cac2e30ca48',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
